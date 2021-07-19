@@ -1,39 +1,39 @@
-const user = require('models/users');
-const profile = require('models/profiles');
+const user = require('./models/users');
+const profile = require('./models/profiles');
 
-const getUser = async (id) => await user.findById(id);
-const getAllUsers = async () => await user.find();
+const getUser = async (query) => await user.findOne(query);
+const findUsers = async (query) => await user.find(query);
 const createUser = async (userInput) => {
   const newUser = new user(userInput);
   try {
     const result = await newUser.save();
     return result;
   } catch (err) {
-    return err;
+    throw err;
   }
 };
-const deleteUser = async (id) => {
+const deleteUser = async (query) => {
   try {
-    const removedUser = await user.remove(id);
+    const removedUser = await user.remove(query);
     return true;
   } catch (err) {
-    return err;
+    throw err;
   }
 };
 
-const updateUser = async (id, props) => {
+const updateUser = async (query, props) => {
   try {
-    const updatedUser = await user.updateOne(id, props);
+    const updatedUser = await user.updateOne(query, props);
     return updatedUser;
   } catch (err) { 
-    return err;
+    throw err;
   }
 };
 
 module.exports = {
   createUser,
   getUser,
-  getAllUsers,
+  findUsers,
   deleteUser,
   updateUser,
 }
