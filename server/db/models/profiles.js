@@ -4,11 +4,17 @@ const profiles = mongoose.model("profiles", {
   name: {
     type: String,
     required: true,
-    // in api: user = profile.user_id; profile.name = user.firstName + user.lastName 
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Users",
+    required: true,
+  },
+  instruments: {
+    type: Array,
+  },
+  description: {
+    type: String,
   },
 });
 
