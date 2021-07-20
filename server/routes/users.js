@@ -14,27 +14,28 @@ router.post('/newUser', async (req, res, next) => {
     };
     const savedUser = await db.users.createUser(newUser);
     const authToken = newToken(savedUser.id);
-    console.log({savedUser, authToken})
-    res.json({savedUser, authToken});
+    res.status(201).end();
   } catch(err) {
-    res.json({message: err.message})
+    res.status(400).json({message: err.message})
   }
 });
 
 router.post('/login', async (req, res, next) => {
+  console.log(req.body);
   try{
     const login = {
       email: req.body.email,
       password: req.body.password,
     };
-    const user = db.users.getUser({ email: req.body.email });
+    const user = await db.users.getUser({ email: req.body.email });
+    console.log(user.password)
     if (user.password === req.body.password) {
       const authToken = newToken(user.id);
-      res.json({ authToken });
+      res.status(200).json({ authToken }).end();
     }
 
   } catch(err) {
-    res.json({ message: err.message })
+    res.status(400).json({ message: err.message })
   }
 });
 

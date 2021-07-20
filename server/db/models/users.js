@@ -9,10 +9,6 @@ const users = mongoose.model("Users", {
     type: String,
     required: true,
   },
-  middleName: {
-    type: String,
-    required: false,
-  },
   email: {
     type: String,
     required: true,

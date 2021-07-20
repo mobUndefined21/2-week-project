@@ -13,7 +13,7 @@ const createUser = async (userInput) => {
 
 const getUser = async (query) => await user.findOne(query);
 
-const findUsers = async (query) => await user.find(query);
+const findUsers = async (query, select = null) => await user.find(query, select);
 
 const deleteUser = async (query) => {
   try {
