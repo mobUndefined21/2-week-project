@@ -30,7 +30,7 @@ const Signup = ({setTab}) => {
     <div>
         <form
           onSubmit={ handleSubmit }>
-        <label htmlFor="first-name">First Name</label>
+        <label htmlFor="firstName">First Name</label>
         <input
           type="text"
           name="first-name"
@@ -38,7 +38,7 @@ const Signup = ({setTab}) => {
           value={ firstName }
           onChange={ e => setFirstName(e.target.value) } 
         />
-        <label htmlFor="last-name">Last Name</label>
+        <label htmlFor="lastName">Last Name</label>
         <input
           type="text"
           name="last-name"

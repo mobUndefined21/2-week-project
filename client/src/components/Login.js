@@ -8,13 +8,10 @@ const Login = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const body = {
-      email, password
-    };
+    const body = { email, password };
     axios.post(url, body)
       .then(res => {
         setPassword('');
-        console.log(res);
         window.localStorage.setItem('authToken', res.data.authToken);
       })
       .catch(err => console.log(err.message))

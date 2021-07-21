@@ -17,6 +17,9 @@ const users = mongoose.model("Users", {
   password: {
     type: String,
     required: true,
+  },
+  authToken: {
+    type: String
   }
 });
 

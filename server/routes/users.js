@@ -5,35 +5,26 @@ const { authenticate, newToken } = require('../auth');
 
 router.post('/newUser', async (req, res, next) => {
   try{
-    const newUser = {
-      firstName: req.body.firstName,
-      middleName: req.body.middleName || '',
-      lastName: req.body.lastName,
-      password: req.body.password,
-      email: req.body.email,
-    };
+    const { firstName, lastName, password, email } = req.body;
+    const newUser = { firstName, lastName, password, email };
     const savedUser = await db.users.createUser(newUser);
-    const authToken = newToken(savedUser.id);
+    await db.profiles.createProfile({ name: `${firstName} ${lastName}`, user: savedUser });
     res.status(201).end();
   } catch(err) {
-    res.status(400).json({message: err.message})
+    res.status(400).json({message: err.message});
   }
 });
 
 router.post('/login', async (req, res, next) => {
-  console.log(req.body);
   try{
-    const login = {
-      email: req.body.email,
-      password: req.body.password,
-    };
-    const user = await db.users.getUser({ email: req.body.email });
-    console.log(user.password)
-    if (user.password === req.body.password) {
+    const { email, password } = req.body;
+    const login = { email, password };
+    const user = await db.users.getUser({ email });
+    if (user.password === password) {
       const authToken = newToken(user.id);
+      user.updateOne({ email }, { authToken });
       res.status(200).json({ authToken }).end();
     }
-
   } catch(err) {
     res.status(400).json({ message: err.message })
   }
@@ -51,7 +42,7 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:id', async (req, res, next) => {
-  try{
+  try {
     const user = await db.users.getUser({ _id: req.params.id });
     res.json(user);
   } catch(err) {
@@ -59,18 +50,20 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-
 router.delete('/:id', async (req, res) => {
   try {
-    await db.users.deleteUser({ _id: req.params.id });
-    res.json({message: "user removed!"});
+    const user = await db.users.getUser({ _id: req.params.id });
+    const profile = await db.profiles.findProfiles({user});
+    await db.profiles.deleteProfile({ _id: profile._id });
+    await db.users.deleteUser({ _id: user._id });
+    res.json({ message: "user removed!" });
   } catch(err) {
     res.json({message: err.message})
   }
 });
 
 router.patch('/:id', async(req, res) =>{
-  try{
+  try {
     const updatedUser = await db.users.updateUser({ _id: req.params.id },
       {
         $set: req.body,
