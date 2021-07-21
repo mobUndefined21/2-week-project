@@ -2,7 +2,7 @@ import {useState} from 'react'
 const axios = require('axios');
 const url = `${window.location.protocol}//${window.location.hostname}:8080/api/users/login`;
 
-const Login = () => {
+const Login = ({setLoggedIn}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -13,6 +13,10 @@ const Login = () => {
       .then(res => {
         setPassword('');
         window.localStorage.setItem('authToken', res.data.authToken);
+        axios.defaults.headers.common = {
+          authorization: res.data.authToken
+        }
+        setLoggedIn(true);
       })
       .catch(err => console.log(err.message))
   }

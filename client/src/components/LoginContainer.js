@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Login from './Login';
 import Signup from './Signup';
 
-const LoginContainer = () => {
+const LoginContainer = ({setLoggedIn}) => {
   const [tab, setTab] = useState('login');
   return (
     <div>
