@@ -21,6 +21,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 router.patch('/:id', async(req, res) => {
+  console.log(req.body);
   try{
     const updatedProfile = await db.profiles.updateProfile({ _id: req.params.id },
       {

@@ -8,7 +8,7 @@ router.post('/newUser', async (req, res, next) => {
     const { firstName, lastName, password, email } = req.body;
     const newUser = { firstName, lastName, password, email };
     const savedUser = await db.users.createUser(newUser);
-    await db.profiles.createProfile({ name: `${firstName} ${lastName}`, user: savedUser });
+    await db.profiles.createProfile({ name: `${firstName} ${lastName}`, description: `hello my name is ${firstName} ${lastName}`, user: savedUser });
     res.status(201).end();
   } catch(err) {
     res.status(400).json({message: err.message});
@@ -29,8 +29,6 @@ router.post('/login', async (req, res, next) => {
     res.status(400).json({ message: err.message })
   }
 });
-
-
 
 router.patch('/logout', async (req, res, next) => {
   try {
