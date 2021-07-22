@@ -1,8 +1,6 @@
 import axios from 'axios';
 const url = `${window.location.protocol}//${window.location.hostname}:8080/api/users/logout`;
 
-
-
 const Logout = ({setLoggedIn}) => {
   const handleClick = () => {
     axios.patch(url).then(res => {

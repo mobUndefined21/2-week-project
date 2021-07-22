@@ -15,7 +15,7 @@ const LoginContainer = ({setLoggedIn}) => {
         </button>
       </nav>
       <div>
-        {tab === 'login' ? <Login setTab={setTab}/> : <Signup setTab={setTab}/>}
+        {tab === 'login' ? <Login setLoggedIn={setLoggedIn} setTab={setTab}/> : <Signup setTab={setTab}/>}
       </div>
     </div>
   )

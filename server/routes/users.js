@@ -34,19 +34,18 @@ router.post('/login', async (req, res, next) => {
 
 router.patch('/logout', async (req, res, next) => {
   try {
-    const authToken = req.get('authorization');
-    
+    const authToken = req.get('authorization'); 
     const user = await db.users.getUser({ authToken });
-    console.log(authToken)
-    console.log(user);
     await db.users.updateUser({ _id: user._id }, { authToken: '' })
     res.status(200).json({ message: 'Signed out' });
   } catch(err) {
     console.log(err.message);
     res.status(400).json({ message: err.message })
   }
-})
+});
+
 router.use(authenticate);
+
 router.get('/', async (req, res, next) => {
   try{
     const allUsers = await db.users.findUsers();
