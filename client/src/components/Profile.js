@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Editable from './Editable';
+import AddField from './AddField'
 
 
 
@@ -28,6 +29,7 @@ const Profile = ({profileId}) => {
   if (isLoading) return(
     <div>Loading...</div>
   )
+  console.log(profile)
   return(
     <div>
       <h1>{profile.name}</h1>
@@ -42,16 +44,16 @@ const Profile = ({profileId}) => {
         }
       <div>
         <h3>instruments:</h3>
-        {profile.instruments
-          ?.map((i, index) => {
+        {profile.instruments?.map((i, index) => {
             profile.isOwner
             ? <Editable Tag="p" field="instruments" owner={profile.isOwner}
-              content={profile.instruments[index].name}
+              content={i.name}
               appendProfile={appendProfile}
               profileId={profileId} />
             : <h4 key={index}>{i.name}</h4>
           })
         }
+        {profile.isOwner ? <AddField skillset="instruments" appendProfile={appendProfile} profileId={profileId} /> : null }
       </div>
       <div>
         <h3>skills:</h3>

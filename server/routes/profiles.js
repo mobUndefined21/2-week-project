@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
 
 router.use(authenticate);
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', async (req, res) => {
   try{
     const profile = await db.profiles.getProfile({ _id: req.params.id });
     const isOwner = profile.user._id.toString() === req.user_id.toString();
@@ -28,15 +28,23 @@ router.get('/:id', async (req, res, next) => {
 router.patch('/:id', async(req, res) => {
   console.log('patch by: ' + req.user_id);
   try{
-    const updatedProfile = await db.profiles.updateProfile({ _id: req.params.id },
-      {
-        $set: req.body,
-      });
+    const updatedProfile = await db.profiles.updateProfile({ _id: req.params.id },{ $set: req.body });
     res.json(req.body);
   }
   catch(err) {
     res.json({message: err.message})
   }
 })
+
+router.post('/:id/:skillset', async (req, res) => {
+  try {
+    const { name, skill } = req.body;
+    const profile = await db.profiles.updateProfile({ _id: req.params.id }, { $push: { [req.params.skillset]: {name, skill} } });
+    res.status(201).json({message: req.body}).end();
+  } catch(err) {
+    console.log(err.message);
+    res.json({message: err});
+  }
+});
 
 module.exports = router;
