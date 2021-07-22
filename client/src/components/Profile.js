@@ -15,10 +15,15 @@ const Profile = ({profileId}) => {
       setProfile(data);
     });
   }
-  
-  useEffect(()=>{
+  const appendProfile = prop => {
+    setProfile({...profile, prop });
+    setLoading(true);
+  }
+
+  useEffect(() => {
+    if (isLoading)
     getProfile();
-  }, []);
+  }, [isLoading])
 
   if (isLoading) return(
     <div>Loading...</div>
@@ -26,17 +31,36 @@ const Profile = ({profileId}) => {
   return(
     <div>
       <h1>{profile.name}</h1>
-      <Editable Tag="p" field="description" content={profile.description} profileId={profileId} />
-      <ul>
+        {
+          profile.isOwner 
+          ? <Editable Tag="p" field="description"
+              owner={profile.isOwner}
+              content={profile.description}
+              appendProfile={appendProfile}
+              profileId={profileId} />
+          : <p>{profile.description}</p>
+        }
+      <div>
         <h3>instruments:</h3>
-        {profile.instruments?.map((i, index) => {
+        {profile.instruments
+          ?.map((i, index) => {
+            profile.isOwner
+            ? <Editable Tag="p" field="instruments" owner={profile.isOwner}
+              content={profile.instruments[index].name}
+              appendProfile={appendProfile}
+              profileId={profileId} />
+            : <h4 key={index}>{i.name}</h4>
+          })
+        }
+      </div>
+      <div>
+        <h3>skills:</h3>
+        {profile.skills?.map((i, index) => {
           <li key={index}>{i}</li>
         })}
-
-      </ul>
+      </div>
     </div>
   )
 }
-
 
 export default Profile;

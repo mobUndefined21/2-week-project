@@ -13,6 +13,9 @@ const profiles = mongoose.model("profiles", {
   instruments: {
     type: Array,
   },
+  skills: {
+    type: Array,
+  },
   description: {
     type: String,
   },
