@@ -1,0 +1,9 @@
+.login-container{
+  margin: 16px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: var(--rhythm);
+  border-radius: 10px;
+}

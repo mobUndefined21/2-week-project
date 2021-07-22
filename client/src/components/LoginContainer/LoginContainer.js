@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import Login from './Login';
-import Signup from './Signup';
+import Login from '../Login/Login';
+import Signup from '../Signup/Signup';
 
 const LoginContainer = ({setLoggedIn}) => {
   const [tab, setTab] = useState('login');

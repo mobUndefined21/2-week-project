@@ -7,7 +7,7 @@ const updateProfile = async (profileId, field, property) => {
   return await axios.patch(url, { [field]: property });
 };
 
-const Editable = ({ Tag, content, field, profileId, appendProfile, isOwner}) => {
+const Editable = ({ Tag, content, field, profileId, appendProfile, owner}) => {
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(content);
 
@@ -31,6 +31,8 @@ const Editable = ({ Tag, content, field, profileId, appendProfile, isOwner}) => 
       value={value}
       />
     : <Tag>{content}</Tag>
+
+    console.log(output);
   return (
     <div>
       {output}

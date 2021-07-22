@@ -39,11 +39,15 @@ router.patch('/:id', async(req, res) => {
 router.post('/:id/:skillset', async (req, res) => {
   try {
     const { name, skill } = req.body;
-    const profile = await db.profiles.updateProfile({ _id: req.params.id }, { $push: { [req.params.skillset]: {name, skill} } });
-    res.status(201).json({message: req.body}).end();
+    const profile = db.profiles.getProfile({ _id: req.params.id });
+    const skillset = profile['skillset'];
+    const index = skillset.find((skill) => skill.name == name);
+
+    await db.profiles.updateProfile({ _id: req.params.id }, { $push: { [req.params.skillset]: {name, skill} } });
+    return res.status(201).json({message: req.body}).end();
   } catch(err) {
     console.log(err.message);
-    res.json({message: err});
+    res.json({message: err}); 
   }
 });
 
