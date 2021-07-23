@@ -39,12 +39,36 @@ router.patch('/:id', async(req, res) => {
 router.post('/:id/:skillset', async (req, res) => {
   try {
     const { name, skill } = req.body;
-    const profile = db.profiles.getProfile({ _id: req.params.id });
-    const skillset = profile['skillset'];
-    const index = skillset.find((skill) => skill.name == name);
+    const profile = await db.profiles.getProfile({ _id: req.params.id });
+    const skillset = profile[req.params.skillset];
+    const target = skillset.find((skill, i) => skill.name == name);
 
+    if (target) {
+      const index = skillset.indexOf(target);
+      const query = `${req.params.skillset}.name`;
+      const element = `${req.params.skillset}.$.skill`;
+      await db.profiles.updateProfile({ _id: req.params.id, [query]: name }, { $set: { [element]: skill } });
+      return res.status(201).json({message: req.body}).end();
+    }
     await db.profiles.updateProfile({ _id: req.params.id }, { $push: { [req.params.skillset]: {name, skill} } });
     return res.status(201).json({message: req.body}).end();
+  } catch(err) {
+    console.log(err.message);
+    res.json({message: err}); 
+  }
+});
+router.delete('/:id/:skillset', async (req, res) => {
+  try {
+    const { name, skill } = req.body;
+    const profile = await db.profiles.getProfile({ _id: req.params.id });
+    const skillset = profile[req.params.skillset];
+    const target = skillset.find((skill, i) => skill.name == name);
+    console.log(target)
+    if (target) {
+      await db.profiles.updateProfile({ _id: req.params.id }, { $pull: { [req.params.skillset]: { name: target.name } }});
+      return res.status(201).json({ message: 'removed', item: req.body }).end();
+    }
+    return res.status(404).end();
   } catch(err) {
     console.log(err.message);
     res.json({message: err}); 

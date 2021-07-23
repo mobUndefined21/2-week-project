@@ -22,7 +22,10 @@ router.post('/login', async (req, res, next) => {
     if (user.password === password) {
       const authToken = newToken(user._id);
       await db.users.updateUser({ email }, { authToken });
-      res.status(200).json({ authToken }).end();
+      console.log(user._id);
+      const profile = await db.profiles.getProfile({ user: {_id: user._id }});
+      console.log(profile);
+      res.status(200).json({ authToken, profileId: profile._id }).end();
     }
   } catch(err) {
     console.log(err.message);

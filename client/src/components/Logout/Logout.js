@@ -1,4 +1,5 @@
 import axios from 'axios';
+import './Logout.css';
 const url = `${window.location.protocol}//${window.location.hostname}:8080/api/users/logout`;
 
 const Logout = ({setLoggedIn}) => {
@@ -13,7 +14,7 @@ const Logout = ({setLoggedIn}) => {
   }
   return (
     <div>
-      <button onClick={handleClick}>Sign out</button>
+      <button onClick={handleClick} className="btn-login btn-login-text">Sign out</button>
     </div>
   )
 };

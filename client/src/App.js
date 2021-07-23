@@ -1,6 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Nav from './components/Nav/Nav';
+import Footer from './components/Footer/Footer';
 import HomePage from './components/HomePage/HomePage'
 import LoginPage from './components/LoginPage/LoginPage'
 import ProfilePage from './components/ProfilePage/ProfilePage'
@@ -16,16 +17,16 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(existingToken);
   return (
     <Router>
+    <Nav setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
     <div className="App">
-      
-    <Nav />
-    <Switch>
-      <Route path="/" exact component={() => <HomePage/>}/>
-      <Route path="/login" exact component={() => <LoginPage/>}/>
-      <Route path="/browsemusicians" exact component={() => <ProfileGalleryPage/>}/>
-      <Route path="/profile/:id" exact component={() => <ProfilePage/>}/>
-    </Switch>
+      <Switch>
+        <Route path="/" exact component={() => <HomePage/>}/>
+        <Route path="/login" exact component={() => <LoginPage setLoggedIn={setLoggedIn} loggedIn={loggedIn} />}/>
+        <Route path="/browsemusicians" exact component={() => <ProfileGalleryPage/>}/>
+        <Route path="/profile/:id" exact component={() => <ProfilePage/>}/>
+      </Switch>
     </div>
+    <Footer className="footer" />
   </Router> 
 
 );

@@ -29,41 +29,47 @@ const Signup = ({setTab}) => {
   return (
     <div>
         <form
-          onSubmit={ handleSubmit }>
-        <label htmlFor="firstName">First Name</label>
+          onSubmit={ handleSubmit }
+          className="login-form">
+        <label className="form-label" htmlFor="firstName">First Name</label>
         <input
+          className="form-input" 
           type="text"
           name="first-name"
           id="firstName"
           value={ firstName }
           onChange={ e => setFirstName(e.target.value) } 
         />
-        <label htmlFor="lastName">Last Name</label>
+        <label className="form-label" htmlFor="lastName">Last Name</label>
         <input
+          className="form-input" 
           type="text"
           name="last-name"
           id="lastName"
           value={ lastName }
           onChange={ e => setLastName(e.target.value) } 
         />
-        <label htmlFor="email">E-mail</label>
+        <label className="form-label" htmlFor="email">E-mail</label>
         <input
+          className="form-input" 
           type="text"
           name="email"
           id="email"
           value={ email }
           onChange={ e => setEmail(e.target.value) }
         />
-        <label htmlFor="password">Password</label>
+        <label className="form-label" htmlFor="password">Password</label>
         <input
+          className="form-input" 
           type="password"
           name="password"
           id="password"
           value={ password }
           onChange={ e => setPassword(e.target.value) }
         />
-        <input type="submit" value="Sign Up" />
+        <input type="submit" value="Sign Up" className="signup-button"/>
       </form>
+      <h1>Signup Page</h1>
     </div>
   )
 }

@@ -1,17 +1,11 @@
-nav {
+.nav {
   display: flex;
-  justify-content: space-around;
-}
-
-.btn-login{
-  border: solid 2px var(--ivory);
-  background-color: var(--blue-bell);
-  border-radius: 15px;
+  justify-content: start;
+  gap: 20px;
   text-decoration: none;
 }
 
-.btn-login-text{
-  text-decoration: none;
+.nav > h2 {
   color: var(--ivory);
 }
 
@@ -24,24 +18,39 @@ nav {
 }
 
 .logo {
+  margin-left: 20px;
+  /* top: 0px;
+  left: 0px;
+  position: absolute;
   padding: 6px;
-  margin: 18px;
+  margin: 0px;
   color: var(--ivory);
-  font-size: 26px;
+  margin: 0; */
 }
 
 .nav-links {
-  width: 60%;
+  display: flex;
+  justify-content: start;
+  gap: 40px;
+  font-size: 26px;
+  margin: 0;
+  padding-left: 0;
+  /* width: 60%;
+  position: absolute;
   font-weight: 100;
   font-size: 26px;
-  display: flex;
-  align-items: center;
+  align-items: center;*/
   list-style: none;
+}
+.footer {
+  margin-top: 7px;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-link {
-  padding: 6px;
-  margin: 6px;
+  /* padding: 6px;
+  margin: 6px; */
 }
 
 .nav-link:hover{
@@ -50,4 +59,15 @@ nav {
 
 .active {
   font-weight: 200;
+}
+
+.btn-login{  
+  position: absolute;
+  top: 12px;
+  right: 0px;
+}
+
+.btn-login-text{
+  text-decoration: none;
+  color: var(--ivory);
 }

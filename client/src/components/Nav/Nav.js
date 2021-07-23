@@ -1,26 +1,24 @@
-import React from "react";
+import { useState } from "react";
 import {NavLink} from 'react-router-dom';
+import Logout from '../Logout/Logout';
 import './Nav.css';
 
-function Nav() {
+function Nav({loggedIn,setLoggedIn}) {
+
   return (
-    <nav className='nav'>
-      <NavLink to='/' exact className="nav-link">
-      <h3 className="logo"><i class="fas fa-microphone-alt"></i></h3>
-      </NavLink>
-      <ul className="nav-links"> 
-        <NavLink to='/' exact className="nav-link">
-          <li><i className="fas fa-home"></i></li>
+    <div>
+      <nav>
+        <NavLink to='/' exact className="nav-link nav">
+          <h3 className="logo"><i className="fas fa-microphone-alt"></i></h3>
+          <h2>Strummr</h2>
         </NavLink>
-        <NavLink to='/browsemusicians' className="nav-link">
-          <li><i className="fas fa-user-friends"></i></li>
-        </NavLink>
-        <NavLink to='/login' className="nav-link btn-login">
-          <li className="btn-login-text">Login</li>
-        </NavLink>
-      </ul>
-    </nav>
-  );
+        {loggedIn ? <NavLink to='/login'><Logout setLoggedIn={setLoggedIn}/></NavLink> :
+        <NavLink to='/login' className="nav-link btn-login btn-login-text">
+            Login
+        </NavLink>}
+      </nav>
+    </div>
+);
 }
 
 export default Nav;

@@ -32,7 +32,6 @@ const Editable = ({ Tag, content, field, profileId, appendProfile, owner}) => {
       />
     : <Tag>{content}</Tag>
 
-    console.log(output);
   return (
     <div>
       {output}

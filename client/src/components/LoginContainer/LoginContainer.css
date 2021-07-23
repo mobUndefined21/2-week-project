@@ -1,0 +1,48 @@
+.btn-login-text {
+  text-decoration: none;
+  color: var(--ivory);
+}
+
+.btn-login-loginContainer {
+  border: solid 2px var(--ivory);
+  background-color: var(--blue-bell);
+  border-radius: 15px;
+  text-decoration: none;
+  /* position: absolute;
+  bottom: 82px;
+  right: 10px; */
+}
+
+.nav-link-loginContainer {
+  padding: 10px;
+  margin: 10px;
+}
+
+p, a, label {
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 2rem;
+  margin: 0.5rem;
+  color: var(--ivory);
+}
+
+.form-input {
+  font-size: 2rem;
+}
+
+.login-button, .signup-button {
+  margin: 5rem 0;
+  font-size: 2rem;
+  color: var(--ivory);
+  border: solid 2px var(--ivory);
+  background-color: var(--blue-bell);
+  border-radius: 15px;
+  text-decoration: none;
+}

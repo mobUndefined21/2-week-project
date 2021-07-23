@@ -1,7 +1,7 @@
-.App{
+.App {
   border-radius: 25px;
   background-color: var(--space-cadet);
   color: var(--ivory);
-  height: 600px;
-  padding-bottom: 15px;
+  width: 100%;
+  margin: auto;
 }

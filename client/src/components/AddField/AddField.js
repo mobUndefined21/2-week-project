@@ -10,7 +10,7 @@ const AddField = ({appendProfile, profileId, skillset}) => {
 
   return (
     <div>
-      <input type="text" id={`input${skillset}`} placeholder="name" />
+      <input type="text" id={`input${skillset}`} placeholder={`add ${skillset}`} />
       <button onClick={sendNewField}>Add</button>
     </div>
   )

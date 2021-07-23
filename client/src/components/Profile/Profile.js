@@ -3,8 +3,6 @@ import axios from 'axios';
 import Editable from '../Editable/Editable';
 import AddField from '../AddField/AddField'
 
-
-
 const Profile = ({profileId}) => {
   const url = `${window.location.protocol}//${window.location.hostname}:8080/api/profiles/${profileId}`;
   const [isLoading, setLoading] = useState(true);
@@ -24,14 +22,17 @@ const Profile = ({profileId}) => {
   useEffect(() => {
     if (isLoading)
     getProfile();
-  }, [isLoading])
+  }, [isLoading, getProfile])
 
   if (isLoading) return(
     <div>Loading...</div>
   )
 
+  if (!profile) {
+    return <h2>Profile not found! </h2>
+  }
   return(
-    <div>
+    <div className="login-container">
       <h1>{profile.name}</h1>
         {
           profile.isOwner 
@@ -42,33 +43,33 @@ const Profile = ({profileId}) => {
               profileId={profileId} />
           : <p>{profile.description}</p>
         }
-      <div>
+        {
+        profile.instruments?.length > 0 && 
+        <div> 
         <h3>instruments:</h3>
+        {profile.instruments.map((i, index) => i.name && <h4 key={index}>{i.name}: {i.skill}</h4>)}
 
-        {profile.instruments && profile.instruments.map((i, index) => {
-          return profile.isOwner
-            ? <Editable
-              Tag="p"
-              key={index}
-              field="instruments"
-              owner={profile.isOwner}
-              content={i.name ? i.name : 'This is empty'}
-              appendProfile={appendProfile}
-              profileId={profileId} />
-            : <h4 key={index}>{i.name}</h4>
-          })
-        }
-        {profile.isOwner ? 
+      </div>
+      }
+      {profile.isOwner ? 
         <AddField skillset="instruments"
         appendProfile={appendProfile}
         profileId={profileId} />
         : null }
-      </div>
       <div>
-        <h3>skills:</h3>
-        {profile.skills?.map((i, index) => {
-          <li key={index}>{i}</li>
-        })}
+      {
+        profile.skills?.length > 0 && <h3>skills:</h3>
+      }
+      {
+          profile.skills?.length > 0 &&
+          profile.skills?.map((skill, index) => {
+            return skill.name && <h4 key={index}>{skill.name}: {skill.skill}</h4> })
+      }
+      {profile.isOwner ? 
+        <AddField skillset="skills"
+        appendProfile={appendProfile}
+        profileId={profileId} />
+        : null }
       </div>
     </div>
   )
