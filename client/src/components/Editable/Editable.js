@@ -3,11 +3,12 @@ import axios from 'axios';
 
 const updateProfile = async (profileId, field, property) => {
   const url = `${window.location.protocol}//${window.location.hostname}:8080/api/profiles/${profileId}`;
-  console.log('sending axios ' + { [field]: property })
+  console.log('sending axios ');
+  console.dir({ [field]: property });
   return await axios.patch(url, { [field]: property });
 };
 
-const Editable = ({ Tag, content, field, profileId, appendProfile, owner}) => {
+const Editable = ({ Tag, content, field, profileId, appendProfile, owner, textarea = false}) => {
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(content);
 
@@ -25,11 +26,19 @@ const Editable = ({ Tag, content, field, profileId, appendProfile, owner}) => {
   }
 
   const output = editing
-    ? <input
+    ? (
+      textarea 
+      ? 
+      <textarea onChange={onChange}>
+        {value}
+      </textarea>
+      : 
+      <input
       type="text"
       onChange={onChange}
       value={value}
       />
+      )
     : <Tag>{content}</Tag>
 
   return (

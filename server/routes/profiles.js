@@ -18,8 +18,8 @@ router.get('/:id', async (req, res) => {
   try{
     const profile = await db.profiles.getProfile({ _id: req.params.id });
     const isOwner = profile.user._id.toString() === req.user_id.toString();
-    const {description, name, instruments, skills } = profile
-    res.json({ description, name, instruments, skills, isOwner });
+    const {description, name, instruments, skills, title, avatar } = profile
+    res.json({ description, name, instruments, skills, isOwner, title, avatar });
   } catch(err) {
     res.json({message: err});
   }
@@ -27,6 +27,7 @@ router.get('/:id', async (req, res) => {
 
 router.patch('/:id', async(req, res) => {
   console.log('patch by: ' + req.user_id);
+  console.log(req.body);
   try{
     const updatedProfile = await db.profiles.updateProfile({ _id: req.params.id },{ $set: req.body });
     res.json(req.body);
@@ -57,9 +58,11 @@ router.post('/:id/:skillset', async (req, res) => {
     res.json({message: err}); 
   }
 });
+
 router.delete('/:id/:skillset', async (req, res) => {
   try {
-    const { name, skill } = req.body;
+    const { name } = req.body;
+    console.log(req.body)
     const profile = await db.profiles.getProfile({ _id: req.params.id });
     const skillset = profile[req.params.skillset];
     const target = skillset.find((skill, i) => skill.name == name);

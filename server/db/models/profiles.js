@@ -5,6 +5,15 @@ const profiles = mongoose.model("profiles", {
     type: String,
     required: true,
   },
+  avatar: {
+    type: String,
+  },
+  title: {
+    type: String,
+  },
+  music: {
+    typer: Array,
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Users",

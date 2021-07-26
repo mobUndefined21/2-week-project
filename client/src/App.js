@@ -22,7 +22,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={() => <HomePage/>}/>
         <Route path="/login" exact component={() => <LoginPage setLoggedIn={setLoggedIn} loggedIn={loggedIn} />}/>
-        <Route path="/browsemusicians" exact component={() => <ProfileGalleryPage/>}/>
+        <Route path="/browsemusicians" exact component={() => <ProfileGalleryPage loggedIn={loggedIn}/>}/>
         <Route path="/profile/:id" exact component={() => <ProfilePage/>}/>
       </Switch>
     </div>

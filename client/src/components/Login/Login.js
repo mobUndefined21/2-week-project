@@ -17,8 +17,8 @@ const Login = ({setLoggedIn}) => {
       .then(res => {
         setPassword('');
         window.localStorage.setItem('authToken', res.data.authToken);
-        setLoggedIn(true);
         history.push(`/profile/${res.data.profileId}`)
+        setLoggedIn(true);
       })
       .catch(err => console.log(err.message))
   }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './ProfileGalleryPage.css';
 
-const ProfileGalleryPage = () => {
+const ProfileGalleryPage = ({ loggedIn }) => {
   const [profiles, setProfiles] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const fetchProfiles = async() => {
@@ -27,7 +27,7 @@ const ProfileGalleryPage = () => {
       {console.log(profiles)}
       {profiles.map(profile => (
         <section key={profile._id}>
-          <Link to={`profile/${profile._id}`}>
+          <Link to={loggedIn ? `profile/${profile._id}` : '/login'}>
             <div className="profile-details">
               <section className="avatar"></section>
               <h2>{profile.name}</h2>
