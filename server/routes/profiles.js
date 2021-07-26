@@ -18,8 +18,8 @@ router.get('/:id', async (req, res) => {
   try{
     const profile = await db.profiles.getProfile({ _id: req.params.id });
     const isOwner = profile.user._id.toString() === req.user_id.toString();
-    const {description, name, instruments, skills, title, avatar } = profile
-    res.json({ description, name, instruments, skills, isOwner, title, avatar });
+    const {description, name, instruments, skills, title, avatar, music } = profile
+    res.json({ description, name, instruments, skills, isOwner, title, avatar, music });
   } catch(err) {
     res.json({message: err});
   }
@@ -35,7 +35,26 @@ router.patch('/:id', async(req, res) => {
   catch(err) {
     res.json({message: err.message})
   }
-})
+});
+
+router.post('/:id/music', async (req, res) => {
+  try {
+  const { type, link } = req.body;
+  const profile = await db.profiles.getProfile({ _id: req.params.id });
+  const target = profile.music.find((embed, i) => embed.link == link);
+  console.log(req.body)
+
+  if (target) {
+    await db.profiles.updateProfile({ _id: req.params.id, "music.link": link }, { $set: { "music.$.link": link, "music.$.type": type } });
+    return res.status(201).json({message: req.body}).end();
+  }
+  await db.profiles.updateProfile({ _id: req.params.id }, { $push: { music: { type, link } } });
+  return res.status(201).json({message: req.body}).end();
+  } catch (err) {
+    console.log(err.message);
+    res.json({message: err}); 
+  }
+});
 
 router.post('/:id/:skillset', async (req, res) => {
   try {
@@ -45,7 +64,6 @@ router.post('/:id/:skillset', async (req, res) => {
     const target = skillset.find((skill, i) => skill.name == name);
 
     if (target) {
-      const index = skillset.indexOf(target);
       const query = `${req.params.skillset}.name`;
       const element = `${req.params.skillset}.$.skill`;
       await db.profiles.updateProfile({ _id: req.params.id, [query]: name }, { $set: { [element]: skill } });

@@ -42,17 +42,22 @@ const Profile = ({profileId}) => {
       </div>
         {
           profile.isOwner 
-          ? <Editable Tag="h4" field="title"
+          ? <Editable Tag="h2" field="title"
               owner={profile.isOwner}
               content={profile.title}
               appendProfile={appendProfile}
               profileId={profileId} />
           : <h4>{profile.title}</h4>
         }
-        <Embed
-          isOwner={profile.isOwner}
-          embedLink="https://open.spotify.com/track/4QJC99VVdyzQgzBIlmQy93"
-          player="spotify" />
+        {
+          profile.music?.map(link => {
+            <Embed
+            isOwner={profile.isOwner}
+            embedLink={link.url}
+            player={link.player} />
+          })
+        }
+
         {
           profile.isOwner 
           ? <Editable Tag="p" field="description"

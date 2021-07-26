@@ -17,8 +17,10 @@ const Login = ({setLoggedIn}) => {
       .then(res => {
         setPassword('');
         window.localStorage.setItem('authToken', res.data.authToken);
-        history.push(`/profile/${res.data.profileId}`)
+        axios.defaults.headers.common = {authorization: res.data.authToken};
+        console.log(axios.defaults.headers);
         setLoggedIn(true);
+        history.push(`/profile/${res.data.profileId}`)
       })
       .catch(err => console.log(err.message))
   }

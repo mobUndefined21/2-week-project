@@ -12,7 +12,7 @@ const profiles = mongoose.model("profiles", {
     type: String,
   },
   music: {
-    typer: Array,
+    type: Array,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
