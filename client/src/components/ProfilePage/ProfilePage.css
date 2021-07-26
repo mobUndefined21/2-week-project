@@ -1,0 +1,32 @@
+.profile-page {
+  transition: 250ms;
+}
+
+.profile-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.avatar--profile {
+  background-color: var(--ivory);
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  border: solid var(--space-cadet) 4px;
+  z-index: 1;
+}
+
+.profile-name-wrap {
+  background-color: var(--space-cadet);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 100%;
+  text-align: left;
+  height: 40%;
+  margin-left: -2rem;
+  margin-right: -10px;
+}
+
+.profile-name-wrap h1 {
+  margin-left: 50px;
+}

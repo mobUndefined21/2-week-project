@@ -1,16 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+const bcrypt = require('bcryptjs');
 const { authenticate, newToken } = require('../auth');
 
 router.post('/newUser', async (req, res, next) => {
   try{
     const { firstName, lastName, password, email } = req.body;
-    const newUser = { firstName, lastName, password, email };
-    const savedUser = await db.users.createUser(newUser);
-    const newProfile = await db.profiles.createProfile({ name: `${firstName} ${lastName}`, description: `hello my name is ${firstName} ${lastName}`, user: savedUser });
 
-    res.status(201).json({profileId: newProfile._id }).end();
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(password, salt, async (err, hash) => {
+        const newUser = { firstName, lastName, password: hash, email };
+        const savedUser = await db.users.createUser(newUser);
+        const newProfile = await db.profiles.createProfile({ name: `${firstName} ${lastName}`, description: `hello my name is ${firstName} ${lastName}`, user: savedUser });
+  
+        res.status(201).json({profileId: newProfile._id }).end();
+      })
+    })
   } catch(err) {
     console.log(err.message, err.stack);
     res.status(400).json({message: err.message});
@@ -21,12 +27,16 @@ router.post('/login', async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await db.users.getUser({ email });
-    if (user.password === password) {
-      const authToken = await newToken(user._id);
-      await db.users.updateUser({ email }, { authToken });
-      const profile = await db.profiles.getProfile({ user: {_id: user._id }});
-      res.status(200).json({ authToken, profileId: profile._id }).end();
-    }
+
+    bcrypt.compare(password, user.password, async (err, result) => {
+      if(err) console.error(err);
+      if (result) {
+        const authToken = newToken(user._id);
+        await db.users.updateUser({ email }, { authToken });
+        const profile = await db.profiles.getProfile({ user: {_id: user._id }});
+        res.status(200).json({ authToken, profileId: profile._id }).end();
+      }
+    })
   } catch(err) {
     console.error(err);
     res.status(400).json({ message: err.message })

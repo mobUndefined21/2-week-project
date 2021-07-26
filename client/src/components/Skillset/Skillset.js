@@ -7,10 +7,14 @@ const Skillset = ({skillsetName, profile, appendProfile, profileId, setLoading})
 
   return (
     <div>
-    {
-      profile[skillsetName]?.length > 0 && <h3>{skillsetName}:</h3>
-    }
-    {
+      <h3>{skillsetName}:</h3>
+      {profile.isOwner ?
+      <AddField skillset={skillsetName}
+      appendProfile={appendProfile}
+      profileId={profileId} />
+      : null 
+      }
+      {
         profile[skillsetName]?.length > 0 &&
         profile[skillsetName]?.map((skill, index) => {
           return skill.name
@@ -22,13 +26,7 @@ const Skillset = ({skillsetName, profile, appendProfile, profileId, setLoading})
               setLoading={setLoading}
               profileId={profileId} />
         })
-    }
-    {profile.isOwner ?
-      <AddField skillset={skillsetName}
-      appendProfile={appendProfile}
-      profileId={profileId} />
-      : null 
-    }
+      }
     </div>
   )
 }

@@ -11,20 +11,44 @@ a {
 }
 
 .profile-details {
+  display: flex;
   background-color: var(--ivory);
   border-radius: 5px 25px 25px 5px;
-  color: var(--space-cadet);
+  transition: 250ms;
   margin: 8px;
 }
 
+.profile-details-title{
+  color: var(--space-cadet);
+}
+
+.profile-details-subtitle{
+  font-weight: 100;
+  color: var(--rhythm);
+}
+
 .profile-details:hover {
-  transition: 500ms;
+  transition: 250ms;
   background-color: var(--rhythm);
   color: var(--ivory);
 }
 
 .avatar {
   background-color: var(--ivory);
-  width: 50%;
-  height: 50%;
+  width: 84px;
+  height: 84px;
+  margin: 6px;
+  border-radius: 50%;
+  border: solid var(--ivory) 2px;
+}
+
+.profile-skills {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
 }

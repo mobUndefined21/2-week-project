@@ -1,0 +1,16 @@
+.editable{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.remove-btn {
+  border: solid 2px var(--ivory);
+  border-radius: 50px;
+  color: var(--ivory);
+  margin-left: 6px;
+}
+
+.margin--right-small {
+  margin-right: 1px;
+}

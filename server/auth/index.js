@@ -3,14 +3,13 @@ const db = require('../db');
 
 const SECRET = process.env.TOKEN_SECRET;
 
-const newToken = async id => {
-  const token = await jwt.sign(id.toJSON(), SECRET);
+const newToken = id => {
+  const token = jwt.sign(id.toJSON(), SECRET);
   return token;
 }
 
 const authenticate = async (req, res, next) => {
   const authToken = req.headers['authorization'];
-  console.log(authToken, await db.users.getUser({authToken}));
   if (!authToken) return res.sendStatus(401).end();
   if (jwt.verify(authToken, SECRET)) {
     const currentUser = await db.users.getUser({authToken});

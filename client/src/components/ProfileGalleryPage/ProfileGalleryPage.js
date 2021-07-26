@@ -9,7 +9,6 @@ const ProfileGalleryPage = ({ loggedIn }) => {
   const fetchProfiles = async() => {
     const url = `${window.location.protocol}//${window.location.hostname}:8080/api/profiles/`;
     const allProfiles = await axios.get(url);
-    console.log(allProfiles.data);
     setProfiles(allProfiles.data);
     setLoading(false);
   }
@@ -24,14 +23,15 @@ const ProfileGalleryPage = ({ loggedIn }) => {
   return (
     <div className="gallery">
       <h1 className="gallery-title">Browse Musicians</h1>
-      {console.log(profiles)}
       {profiles.map(profile => (
         <section key={profile._id}>
           <Link to={loggedIn ? `profile/${profile._id}` : '/login'}>
             <div className="profile-details">
-              <section className="avatar"></section>
-              <h2>{profile.name}</h2>
-              <p>{`${profile.instruments.length ? profile.instruments[0].name + ' player': ''}`}</p>
+              <img className="avatar" src={profile.avatar}></img>
+              <div className="profile-details-text">
+                <h2 className="profile-details-title">{profile.name}</h2>
+                <p className="profile-details-subtitle">{`${profile.title !== undefined ? profile.title : ''}`}</p>
+              </div>
             </div>
           </Link>
         </section>

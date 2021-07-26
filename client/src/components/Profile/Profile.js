@@ -20,24 +20,27 @@ const Profile = ({profileId}) => {
     setProfile({...profile, prop });
     setLoading(true);
   }
-
+  useEffect(() => {setLoading(true)}, [profileId]);
   useEffect(() => {
     if (isLoading)
     getProfile();
   }, [isLoading, getProfile])
 
   if (isLoading) return(
-    <div>Loading...</div>
+    <div>...</div>
   )
-    console.log(profile);
   if (!profile) {
     return <h2>Profile not found! </h2>
   }
   return(
     <div className="login-container">
       <div>
-        <img></img>
-      <h1>{profile.name}</h1>
+        <div className="profile-wrap">
+          <img className="avatar--profile" src={profile.avatar} alt="avatar"></img>
+          <div className="profile-name-wrap">
+            <h1 className="profile-name">{profile.name}</h1>
+          </div>
+        </div>
         
       </div>
         {
@@ -68,8 +71,10 @@ const Profile = ({profileId}) => {
               profileId={profileId} />
           : <p>{profile.description}</p>
         }
-        <Skillset profileId={profileId} setLoading={setLoading} appendProfile={appendProfile} skillsetName="instruments" profile={profile} />
-        <Skillset profileId={profileId} setLoading={setLoading} appendProfile={appendProfile} skillsetName="skills" profile={profile} />
+        <div className="profile-skills">
+          <Skillset profileId={profileId} setLoading={setLoading} appendProfile={appendProfile} skillsetName="instruments" profile={profile} />
+          <Skillset profileId={profileId} setLoading={setLoading} appendProfile={appendProfile} skillsetName="skills" profile={profile} />
+        </div>
     </div>
   )
 }

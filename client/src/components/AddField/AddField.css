@@ -1,0 +1,10 @@
+.edit-btn {
+    border: solid 2px var(--ivory);
+    border-radius: 50px;
+    color: var(--ivory);
+    text-transform: capitalize;
+    /* max-height: 35px; */
+    padding: 3px 3px 3px 5px;
+    text-align: center;
+    margin-left: 6px;
+}

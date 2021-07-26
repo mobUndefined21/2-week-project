@@ -15,12 +15,11 @@ const Login = ({setLoggedIn}) => {
     const body = { email, password };
     axios.post(url, body)
       .then(res => {
-        setPassword('');
         window.localStorage.setItem('authToken', res.data.authToken);
+        window.localStorage.setItem('profileId', res.data.profileId);
         axios.defaults.headers.common = {authorization: res.data.authToken};
-        console.log(axios.defaults.headers);
-        setLoggedIn(true);
         history.push(`/profile/${res.data.profileId}`)
+        setLoggedIn(true);
       })
       .catch(err => console.log(err.message))
   }

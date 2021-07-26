@@ -1,4 +1,5 @@
 import axios from 'axios';
+import './AddField.css';
 
 const AddField = ({appendProfile, profileId, skillset}) => {
 
@@ -10,8 +11,8 @@ const AddField = ({appendProfile, profileId, skillset}) => {
 
   return (
     <div>
-      <input type="text" id={`input${skillset}`} placeholder={`add ${skillset}`} />
-      <button onClick={sendNewField}>Add</button>
+      <input type="text" onKeyPress={e=>{if(e.key==='Enter')sendNewField()}} id={`input${skillset}`} placeholder={`add ${skillset}`} />
+      <button onClick={sendNewField}  className="remove-btn">+</button>
     </div>
   )
 }

@@ -6,9 +6,9 @@ const Skill = ({profileId, skillsetName, skillName, isOwner, setLoading}) => {
     axios.delete(`${window.location.protocol}//${window.location.hostname}:8080/api/profiles/${profileId}/${skillsetName}`, {data: { name: skillName }}).then(() => setLoading(true));
   }
   return (
-    <li>
-      {skillName}{isOwner && <button onClick={deleteSkill}>X</button>}
-    </li>
+    <p className="flex-between">
+      {skillName}{isOwner && <button className="remove-btn margin--right-small" onClick={deleteSkill}>-</button>}
+    </p>
   )
 }
 
