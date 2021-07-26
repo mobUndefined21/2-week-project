@@ -24,6 +24,7 @@ const Signup = ({setTab}) => {
       setEmail('');
       setTab('login');
     });
+    alert('Account created!');
   }
   
   return (

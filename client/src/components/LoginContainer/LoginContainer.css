@@ -4,6 +4,8 @@
 }
 
 .btn-login-loginContainer {
+  color: var(--ivory);
+  text-decoration: none;
   border: solid 2px var(--ivory);
   background-color: var(--blue-bell);
   border-radius: 15px;
@@ -34,7 +36,9 @@ p, a, label {
 }
 
 .form-input {
-  font-size: 2rem;
+  font-size: 1rem;
+  height: 2rem;
+  padding: 2px;
 }
 
 .login-button, .signup-button {
