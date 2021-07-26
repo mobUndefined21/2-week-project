@@ -14,7 +14,7 @@ const Logout = ({setLoggedIn}) => {
   }
   return (
     <div>
-      <button onClick={handleClick} className="btn-login btn-login-text">Sign out</button>
+      <a onClick={handleClick} className="nav-link btn-login btn-login-text">Sign out</a>
     </div>
   )
 };

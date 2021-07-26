@@ -37,7 +37,6 @@
   padding-left: 0;
   /* width: 60%;
   position: absolute;
-  font-weight: 100;
   font-size: 26px;
   align-items: center;*/
   list-style: none;
@@ -49,6 +48,7 @@
 }
 
 .nav-link {
+  font-weight: 100;
   /* padding: 6px;
   margin: 6px; */
 }
@@ -58,13 +58,13 @@
 }
 
 .active {
-  font-weight: 200;
+  /* font-weight: 200; */
 }
 
 .btn-login{  
   position: absolute;
-  top: 12px;
-  right: 0px;
+  top: 20px;
+  right: 20px;
 }
 
 .btn-login-text{

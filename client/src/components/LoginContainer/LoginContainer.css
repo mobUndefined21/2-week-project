@@ -4,6 +4,8 @@
 }
 
 .btn-login-loginContainer {
+  color: var(--ivory);
+  text-decoration: none;
   border: solid 2px var(--ivory);
   background-color: var(--blue-bell);
   border-radius: 15px;
