@@ -18,8 +18,6 @@ function Nav({loggedIn, setLoggedIn}) {
         setLoading(false);
       });
   }, [isLoading]);
-
-  console.log(profile)
   return (
     <div>
       <nav className="nav--inline">

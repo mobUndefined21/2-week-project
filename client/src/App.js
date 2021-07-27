@@ -25,7 +25,8 @@ const App = () => {
         <Route path="/login" exact component={() => <LoginPage setLoggedIn={setLoggedIn} loggedIn={loggedIn} />}/>
         <Route path="/browsemusicians" exact component={() => <ProfileGalleryPage loggedIn={loggedIn}/>}/>
         <Route path="/profile/:id" exact component={() => <ProfilePage/>}/>
-        <Route path="/chat" exact component={() => <Chat/>}/>
+        <Route path="/chat/:conversationId" exact component={() => <Chat />}/>
+        <Route path="/chat" exact component={() => <Chat conversationId="60ffd81c4677a4966cb81f70" />}/>
       </Switch>
     </div>
     <Footer className="footer" />

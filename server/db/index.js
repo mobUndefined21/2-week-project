@@ -68,7 +68,7 @@ const updateProfile = async (query, props) => {
 
 const newConversation = async (participants) => {
   try {
-    const userConversation = await conversations.find({participants: { $all: participants } });
+    const userConversation = await conversations.findOne({'conversations.participants': { $all: participants } });
     if (userConversation) return userConversation._id;
 
     const conversation = await conversations.create({ participants, created: Date.now() })
@@ -82,7 +82,7 @@ const newConversation = async (participants) => {
 const getConversations = async (profileId) => {
   try {
     const userConversations = profileId !== 'getAll'
-    ? await conversations.find({'messages.participants': { $in: [profileId] } })
+    ? await conversations.find({participants: { $in: [profileId] } })
     : await conversations.find();
 
     return userConversations.map(({_id}) => _id);
@@ -93,7 +93,7 @@ const getConversations = async (profileId) => {
 
 const getConversationByParticipants = async (participants) => {
   try {
-    const userConversations = await conversations.find({'messages.participants': { $in: [profileId] } });
+    const userConversations = await conversations.find({participants: { $in: participants } });
     return userConversations.map(({_id}) => _id);
   } catch (err) { 
     throw err;

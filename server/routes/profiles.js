@@ -4,7 +4,7 @@ const db = require('../db');
 const { authenticate } = require('../auth');
 
 router.get('/', async (req, res, next) => {
-  try{
+  try {
     const allProfiles = await db.profiles.findProfiles();
     res.json(allProfiles);
   } catch(err) {
