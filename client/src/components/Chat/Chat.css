@@ -1,15 +1,46 @@
 /* Chat containers */
+
+.margin-top-110{
+  margin-top: 110px;
+}
+
 .message {
   list-style-type:none;
 }
 
+.text{
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.timestamp{
+  font-size: 0.7rem;
+  font-weight: 100;
+  float: right;
+}
+
 .container--chat {
   border: 2px solid #dedede;
-  background-color: var(--blue-bell);
+  background-image: linear-gradient(to top right, var(--rhythm), var(--blue-bell), var(--lavender-web));
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
   max-width: 60%;
+  color: var(--space-cadet);
+}
+
+.input--field{
+  padding: 8px;
+  border: 2px solid #dedede;
+  border-radius: 5px;
+  margin: 16px;
+  position: fixed;
+  bottom: 44px;
+  width: 80%;
+  min-height: 5rem;
+  color: var(--space-cadet);
+  font-family: 'Poppins', sans-serif;
+  background-image: linear-gradient(to bottom right, var(--lavender-web) ,var(--blue-bell));
 }
 
 /* Darker chat container */

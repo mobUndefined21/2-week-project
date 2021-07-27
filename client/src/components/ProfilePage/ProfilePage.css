@@ -1,4 +1,5 @@
 .profile-page {
+  margin-top: 83px;
   transition: 250ms;
 }
 
@@ -20,11 +21,29 @@
   background-color: var(--space-cadet);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  width: 100%;
   text-align: left;
+  min-width: 70%;
   height: 40%;
-  margin-left: -2rem;
+  margin-left: -3rem;
   margin-right: -10px;
+}
+
+@media only screen and (min-width: 700px) {
+  .profile-name-wrap {
+    width: 80%;
+  }
+}
+
+.profile-name{
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+
+.profile-title{
+  margin-top: 0;
+  margin-left: 50px;
+  font-size: 1rem;
+  font-weight: 100;
 }
 
 .profile-name-wrap h1 {

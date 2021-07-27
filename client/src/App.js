@@ -29,7 +29,11 @@ const App = () => {
         <Route path="/chat" exact component={() => <Chat conversationId="60ffd81c4677a4966cb81f70" />}/>
       </Switch>
     </div>
-    <Footer className="footer" />
+    <Footer 
+    setLoggedIn={setLoggedIn} 
+    loggedIn={loggedIn}
+    className="footer" 
+    />
   </Router> 
 
 );

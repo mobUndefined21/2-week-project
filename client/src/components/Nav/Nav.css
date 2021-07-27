@@ -12,13 +12,26 @@
 .nav--inline {
   display: flex;
   align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: var(--space-cadet);
+  z-index: 9999;
 }
 
 .fas {
+  font-size: 0.8em;
   border: solid 2px var(--ivory);
-  padding: 6px;
+  padding: 3px;
   border-radius: 50px;
   transform: scale(-1, 1);
+  background-color: var(--ivory);
+  color: var(--space-cadet);
+}
+
+.fas:hover{
+  transition: 1000ms;
+  background-color: var(--space-cadet);
   color: var(--ivory);
 }
 
@@ -56,11 +69,6 @@
   font-size: 26px;
   align-items: center;*/
   list-style: none;
-}
-.footer {
-  margin-top: 7px;
-  display: flex;
-  justify-content: center;
 }
 
 .nav-link {

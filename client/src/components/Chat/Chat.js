@@ -59,10 +59,10 @@ const Chat = () => {
   };
 
   if(isLoading) return (
-    <p>Loading...</p>
+    <p className="margin-top__83">Loading...</p>
   )
   return (
-    <div>
+    <div className="margin-top-110">
       <ul>
         {conversation.messages.map(({body, profileId, ts}, index) => (
           <Message
@@ -74,7 +74,12 @@ const Chat = () => {
           />))
         }
       </ul>
-      <input type="text" onKeyPress={handleKeyPress} className="container--chat"/>
+      <input 
+      type="text"
+      onKeyPress={handleKeyPress}
+      className="input--field"
+      placeholder="..."
+      />
     </div>
   )
 }

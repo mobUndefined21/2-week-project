@@ -6,6 +6,10 @@
   position: relative;
 }
 
+.gallery-title {
+  margin-top: 83px;
+}
+
 a {
   text-decoration: none;
 }
@@ -27,13 +31,22 @@ a {
   color: var(--rhythm);
 }
 
-.profile-details:hover {
+.profile-details:hover{
   transition: 250ms;
   background-color: var(--rhythm);
+}
+
+.profile-details:hover .profile-details-subtitle {
   color: var(--ivory);
 }
 
+.profile-details:hover .avatar {
+  transition: 800ms;
+  border: solid var(--ivory) 2px;
+}
+
 .profile-details-subtitle:hover{
+  transition: 800ms;
   color: var(--ivory);
 }
 .avatar {
@@ -42,7 +55,7 @@ a {
   height: 84px;
   margin: 6px;
   border-radius: 50%;
-  border: solid var(--ivory) 2px;
+  border: solid var(--rhythm) 2px;
 }
 
 .profile-skills {
