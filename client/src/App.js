@@ -6,6 +6,7 @@ import HomePage from './components/HomePage/HomePage'
 import LoginPage from './components/LoginPage/LoginPage'
 import ProfilePage from './components/ProfilePage/ProfilePage'
 import ProfileGalleryPage from './components/ProfileGalleryPage/ProfileGalleryPage'
+import Chat from './components/Chat/Chat'
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/login" exact component={() => <LoginPage setLoggedIn={setLoggedIn} loggedIn={loggedIn} />}/>
         <Route path="/browsemusicians" exact component={() => <ProfileGalleryPage loggedIn={loggedIn}/>}/>
         <Route path="/profile/:id" exact component={() => <ProfilePage/>}/>
+        <Route path="/chat" exact component={() => <Chat/>}/>
       </Switch>
     </div>
     <Footer className="footer" />

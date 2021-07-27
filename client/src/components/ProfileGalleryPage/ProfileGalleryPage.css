@@ -33,6 +33,9 @@ a {
   color: var(--ivory);
 }
 
+.profile-details-subtitle:hover{
+  color: var(--ivory);
+}
 .avatar {
   background-color: var(--ivory);
   width: 84px;

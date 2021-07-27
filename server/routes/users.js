@@ -29,7 +29,7 @@ router.post('/login', async (req, res, next) => {
     const user = await db.users.getUser({ email });
 
     bcrypt.compare(password, user.password, async (err, result) => {
-      if(err) console.error(err);
+      if(err) res.json({message: 'Wrong username/password!'});
       if (result) {
         const authToken = newToken(user._id);
         await db.users.updateUser({ email }, { authToken });

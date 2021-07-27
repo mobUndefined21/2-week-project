@@ -20,7 +20,7 @@ const createSeedFile = () => {
             const user = {
               firstName,
               lastName,
-              email: `${firstName}.${lastName}@strummer.com`,
+              email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@strummer.com`,
               password: hash,
             }
               console.log(`Adding user ${user.firstName}`);

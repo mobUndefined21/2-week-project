@@ -1,5 +1,6 @@
 const user = require('./models/users');
 const profile = require('./models/profiles');
+const conversations = require('./models/conversations');
 
 const createUser = async (userInput) => {
   const newUser = new user(userInput);
@@ -65,6 +66,73 @@ const updateProfile = async (query, props) => {
   }
 };
 
+const newConversation = async (participants) => {
+  try {
+    const userConversation = await conversations.find({participants: { $all: participants } });
+    if (userConversation) return userConversation._id;
+
+    const conversation = await conversations.create({ participants, created: Date.now() })
+    console.log(`No conversation found, creating new one, id: ${conversation._id}`)
+    return conversation._id;
+  } catch (err) { 
+    throw err;
+  }
+};
+
+const getConversations = async (profileId) => {
+  try {
+    const userConversations = profileId !== 'getAll'
+    ? await conversations.find({'messages.participants': { $in: [profileId] } })
+    : await conversations.find();
+
+    return userConversations.map(({_id}) => _id);
+  } catch (err) { 
+    throw err;
+  }
+};
+
+const getConversationByParticipants = async (participants) => {
+  try {
+    const userConversations = await conversations.find({'messages.participants': { $in: [profileId] } });
+    return userConversations.map(({_id}) => _id);
+  } catch (err) { 
+    throw err;
+  }
+};
+
+const getConversationById = async (conversationId) => {
+  try {
+    const conversation = await conversations.findOne({_id: conversationId});
+    return conversation;
+  } catch (err) {
+    throw err;
+  }
+};
+
+const getMessages = async (conversationId, ts) => {
+  try {
+    const conversation = await conversations.findOne({ _id: conversationId });
+    const newMessages = conversation.messages.filter(msg => msg.ts > ts);
+    return newMessages;
+  } catch (err) { 
+    throw err;
+  }
+};
+
+const postMessage = async (body, conversationId, profileId) => {
+  try {
+    const newMessage = {
+      profileId,
+      body,
+      ts: Date.now(),
+    }
+    await conversations.updateOne({ _id: conversationId }, { $push: { messages: newMessage } });
+    return newMessage;
+  } catch (err) { 
+    throw err;
+  }
+};
+
 module.exports = {
   users: {
     createUser,
@@ -79,5 +147,13 @@ module.exports = {
     findProfiles,
     deleteProfile,
     updateProfile,
+  },
+  messages: {
+    getMessages,
+    postMessage,
+    newConversation,
+    getConversations,
+    getConversationById,
+    getConversationByParticipants,
   }
 }
