@@ -26,7 +26,7 @@ function Nav({loggedIn, setLoggedIn}) {
           <h3 className="logo"><i className="fas fa-microphone-alt"></i></h3>
           <h2>Strummr</h2>
         </Link>
-        {isLoading ? <h2>Loading...</h2> :
+        {isLoading ? '':
         loggedIn && 
         <Link to={`/profile/${window.localStorage.getItem('profileId')}`}>
           <img className="avatar--small" src={profile.avatar}></img>

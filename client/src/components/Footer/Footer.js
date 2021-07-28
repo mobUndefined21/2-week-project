@@ -26,7 +26,7 @@ return (
       <NavLink to='/browsemusicians' className="nav-link">
         <li><i className="fas fa-user-friends"></i></li>
       </NavLink>
-      {loggedIn && <Link to={`/chat`}><i class="fas far fa-comment-alt"></i></Link>}
+      {loggedIn && <Link to={`/conversations`}><i class="fas far fa-comment-alt"></i></Link>}
     </ul>
   </nav>
 )

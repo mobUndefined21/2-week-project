@@ -1,12 +1,19 @@
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Editable from '../Editable/Editable';
 import AddField from '../AddField/AddField';
 import Skillset from '../Skillset/Skillset';
+import Link from 'react-router-dom';
 import Embed from '../Embed/Embed.js'
 import '../ProfilePage/ProfilePage.css';
 
+const msgUrl = `${window.location.protocol}//${window.location.hostname}:8080/api/messages/new`;
+
+const localProfileId = window.localStorage.getItem('profileId');
+
 const Profile = ({profileId}) => {
+
   const url = `${window.location.protocol}//${window.location.hostname}:8080/api/profiles/${profileId}`;
   const [isLoading, setLoading] = useState(true);
   const [profile, setProfile] = useState({});
@@ -17,11 +24,23 @@ const Profile = ({profileId}) => {
       setLoading(false);
     });
   }
+
   const appendProfile = prop => {
     setProfile({...profile, prop });
     setLoading(true);
   }
+
+  const history = useHistory();
+
+  const startConversation = () => {
+    axios.post(msgUrl, { participants: [profileId, localProfileId] })
+      .then(({data}) => {
+      history.push(`/conversations/${data.conversationId}`)
+    });
+  }
+
   useEffect(() => {setLoading(true)}, [profileId]);
+
   useEffect(() => {
     if (isLoading)
     getProfile();
@@ -40,6 +59,7 @@ const Profile = ({profileId}) => {
           <img className="avatar--profile" src={profile.avatar} alt="avatar"></img>
           <div className="profile-name-wrap">
             <h1 className="profile-name">{profile.name}</h1>
+           
         {
           profile.isOwner 
           ? <Editable Tag="h2"
@@ -51,9 +71,10 @@ const Profile = ({profileId}) => {
               profileId={profileId} />
           : <h4 className="profile-title">{profile.title}</h4>
         }
+         
           </div>
         </div>
-        
+        {!profile.isOwner && <i onClick={startConversation} class="fas far fa-comment-alt"></i>}
       </div>
         {
           profile.music?.map(link => {
@@ -88,6 +109,7 @@ const Profile = ({profileId}) => {
           skillsetName="skills"
           profile={profile} />
         </div>
+
     </div>
   )
 }

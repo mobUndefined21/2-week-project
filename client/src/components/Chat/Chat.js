@@ -11,17 +11,28 @@ const postMessage = async (msg, conversationId) => {
   return false;
 }
 
-const Chat = () => {
-  const { conversationId } = useParams();
-  console.log(conversationId);
+const Chat = ({conversationId, updateChat}) => {
   const [conversation, setConversation] = useState({});
   const [participants, setParticipants] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const currentProfileId = window.localStorage.getItem('profileId'); 
   const url = `${window.location.protocol}//${window.location.hostname}:8080/api/messages/${conversationId}`;
   const participantsUrl = (participantId) =>`${window.location.protocol}//${window.location.hostname}:8080/api/profiles/${participantId}`;
-  
+  const ts = 0;
+
+
   useEffect(() => {
+    updateChat((data) => {
+      console.log('suxxess!')
+      if (data.conversationId !== conversationId) return;
+      console.log(conversation)
+
+      axios.get(url)
+      .then(({data}) => {
+        setConversation(data);
+      })
+    });
+
     axios.get(url)
       .then(({data}) => {
         setConversation(data);
@@ -34,9 +45,7 @@ const Chat = () => {
       axios.get(participantsUrl(profileId))
       .then(({data}) => {
         console.log(data);
-        profiles.push(data);
-        // setParticipants([...participants, data]);
-        
+        profiles.push(data); 
         if (profiles.length === 2) {
           setLoading(false)
           setParticipants(profiles);

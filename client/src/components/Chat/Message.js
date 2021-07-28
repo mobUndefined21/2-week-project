@@ -11,7 +11,7 @@ const Message = ({body, profile, isClient, ts}) => {
   return (
     <li className="message container--chat">
     <img className="avatar--tiny right" src="`${profile.avatar}`" />
-      <div className="profile">{profile}</div>
+      <div className="profile">{isClient ? 'me' : profile}</div>
       <div className="text">{body}</div>
       <div className="timestamp">{dateFormatter(ts).split(' ')[1]}</div>
     </li>

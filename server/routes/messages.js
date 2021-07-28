@@ -53,9 +53,15 @@ router.post('/new', async (req, res) => {
 
 router.post('/:conversationId', async (req, res) => {
   try {
-    const { body, profileId } = req.body;   
+    const { body, profileId } = req.body;
     await db.messages.postMessage(body, req.params.conversationId, profileId);
     res.status(201).json({message: 'OK'}).end();
+
+    const { participants } = await db.messages.getConversationById(req.params.conversationId);
+    if(!participants) return;
+    
+    const clients = req.io.clients.filter(({profileId}) => participants.find(r => r === profileId));
+    clients.forEach(({socket}) => socket.emit('newMessage', { conversationId: req.params.conversationId }))
   } catch (err) {
     console.error(err);
     res.json({ message: err.message });

@@ -5,12 +5,12 @@ const url = `${window.location.protocol}//${window.location.hostname}:8080/api/u
 const Logout = ({setLoggedIn}) => {
   const handleClick = () => {
     window.localStorage.clear('authToken');
-    axios.patch(url).then(res => {
-      axios.defaults.headers.common = {
-        authorization: ''
-      }
-      setLoggedIn(false);
-    });
+    window.localStorage.clear('profileId');
+    axios.patch(url);
+    axios.defaults.headers.common = {
+      authorization: ''
+    }
+    setLoggedIn(false);
   }
   return (
     <div>
