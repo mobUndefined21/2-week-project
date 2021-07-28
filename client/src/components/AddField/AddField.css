@@ -8,3 +8,10 @@
     text-align: center;
     margin-left: 6px;
 }
+
+.edit-btn:hover {
+    color: var(--space-cadet);
+    background: var(--ivory);
+    border-color: var(--ivory);
+    cursor: pointer;
+}

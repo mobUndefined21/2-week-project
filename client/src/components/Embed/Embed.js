@@ -11,7 +11,7 @@ const Embed = ({isOwner, embedLink, player, setLoading}) => {
     setLoading(true);
   };
   return (
-    <div className="embeded-wrapper">
+    <div className="embedded-wrapper">
       <div
         className="music-div" 
         dangerouslySetInnerHTML={{__html: players[player.toLowerCase()](embedLink)}}>

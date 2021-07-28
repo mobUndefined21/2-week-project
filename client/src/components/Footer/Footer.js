@@ -34,7 +34,7 @@ return (
       <NavLink to='/browsemusicians' className="nav-link">
         <li><i className="fas fa-user-friends"></i></li>
       </NavLink>
-      {loggedIn && <Link onClick={e=>{setNewMessages(false)}}to={`/conversations`}>{newMessages ? <i class="fas fa-comment-medical"></i> : <i class="fas far fa-comment-alt"></i>}</Link>}
+      {loggedIn && <Link className="nav-link" onClick={e=>{setNewMessages(false)}}to={`/conversations`}>{newMessages ? <i class="fas fa-comment-medical"></i> : <i class="fas far fa-comment-alt"></i>}</Link>}
     </ul>
   </nav>
 )

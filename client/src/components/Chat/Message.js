@@ -9,17 +9,13 @@ const dateFormatter = (unixTime) => {
 const Message = ({body, profile, isLocal, ts}) => {
   return (
     <li className={isLocal ? "message container--chat me" : "message container--chat you"}>
-    <img className={`avatar--tiny right ${isLocal ? "me" : ""}`} src={`${profile.avatar}`} />
+    <div className="flex-align">
+      <img className={`avatar--tiny right ${isLocal ? "me" : ""}`} src={`${profile.avatar}`} />
+    </div>
       <div className={`profile ${isLocal ? "me" : ""}`}>{isLocal ? 'me' : profile.name}</div>
       <div className={`text ${isLocal ? "me" : ""}`}>{body}</div>
       <div className={`timestamp ${isLocal ? "me" : ""}`}>{dateFormatter(ts).split(' ')[1]}</div>
     </li>
-
-    // <div className="container--chat darker">
-    //   <img className="avatar--tiny right"/>
-    //   <p className="message--text">Message 4</p>
-    //   <span className="time-right"></span>
-    // </div>
   );
 }
 

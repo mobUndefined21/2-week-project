@@ -10,7 +10,8 @@ const AddEmbed = ({profileId, setLoading}) => {
     axios.post(url, { link, type }).then(() => setLoading(true));
   }
   return (
-    <div>
+    <div className="add-embed">
+      <h3>Add Embedded player</h3>
       <input id="AddEmbedLink" type="text" placeholder="Link" />
       <select id="AddEmbedType" name="Type">
         {Object.keys(players).map((player, key) => <option key={key}>{player}</option>)}

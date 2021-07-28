@@ -9,8 +9,16 @@
   border-radius: 50px;
   color: var(--ivory);
   margin-left: 6px;
+  z-index: 1;
 }
 
 .margin--right-small {
   margin-right: 1px;
+}
+
+.remove-btn:hover {
+  color: var(--space-cadet);
+  background: var(--ivory);
+  border-color: var(--ivory);
+  cursor: pointer;
 }

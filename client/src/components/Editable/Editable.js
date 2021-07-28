@@ -56,7 +56,6 @@ const Editable = ({ Tag, content, classname, field, profileId, appendProfile, ow
 
   return (
     <div className="description-wrapper">
-      {field === 'description' && <h3 className="description-title">Description</h3>}
       <div className="editable">
       {output}
       {editing

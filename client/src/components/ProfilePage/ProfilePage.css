@@ -44,20 +44,21 @@
   }
 } */
 
-.profile-name-wrap .editable {
+/* .profile-name-wrap .editable {
   align-items: flex-start;
-}
+} */
 
 .profile-name{
   font-size: 1.5rem;
-  margin-bottom: 6px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .embeds {
   display: flex;
   flex-direction: column;
   border-radius: 15px;
-  padding-right: 12px;
+  /* padding-right: 12px; */
   padding-bottom: 12px;
   gap: 10px;
   box-shadow: 0 0 15px rgba(217, 219, 241,0.2);
@@ -70,9 +71,9 @@
 
 .profile-title {
   margin-top: 0;
-  margin-left: 60px;
   font-size: 1rem;
   font-weight: 200;
+  margin-bottom: 0;
 }
 
 .profile-skills-instruments {
@@ -86,7 +87,7 @@
 .profile-skills, .profile-instruments {
   border-radius: 15px;
   width: 60%;
-  padding-right: 12px;
+  /* padding-right: 12px; */
   box-shadow: 0 0 15px rgba(217, 219, 241,0.2);
   background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
 }
@@ -97,7 +98,7 @@
   }
 
   .profile-skills, .profile-instruments {
-    width: 95%;
+    width: 100%;
   }
 }
 .skillset-title {
@@ -105,14 +106,10 @@
   color: var(--ivory);
   background-color: var(--space-cadet);
   font-weight: 200;
-  padding: 6px;
+  padding: 6px 0;
   margin-top: 0;
   width: 100%;
   border-radius: 15px 15px 0px  0px;
-}
-
-.profile-name-wrap h1 {
-  margin-left: 60px;
 }
 
 input {

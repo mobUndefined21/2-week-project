@@ -10,3 +10,13 @@
   position: absolute;
   top: 216px;
 }
+
+.btn-centered:hover {
+  color: var(--space-cadet);
+  background: var(--ivory);
+  border-color: var(--ivory);
+}
+
+.btn {
+  cursor: pointer;
+}

@@ -75,7 +75,7 @@ const Profile = ({profileId}) => {
           profile.isOwner 
           ? <Editable Tag="h2"
           field="title"
-          classname="profile-title"
+          classname="profile-title margin-left-55"
           owner={profile.isOwner}
           content={profile.title}
           appendProfile={appendProfile}
@@ -92,6 +92,7 @@ const Profile = ({profileId}) => {
         </div>
       </div>
 
+      <h3 class="description-title">Description</h3>
       {
           profile.isOwner 
           ? <Editable Tag="p" field="description"
@@ -105,6 +106,7 @@ const Profile = ({profileId}) => {
 
       <div className="embeds">
         <h3 class="skillset-title margin-bottom-5">music</h3>
+        <div className="embed-container">
         {profile.isOwner && <AddEmbed profileId={localProfileId} setLoading={setLoading}/>}
         {
           profile.music?.map((link, key) => (
@@ -116,7 +118,8 @@ const Profile = ({profileId}) => {
             setLoading={setLoading}/>
           ))
           }
-        </div>
+          </div>
+      </div>
         
         <div className="profile-skills-instruments">
           <div className="profile-instruments">

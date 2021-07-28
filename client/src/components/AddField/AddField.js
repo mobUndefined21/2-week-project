@@ -11,7 +11,7 @@ const AddField = ({appendProfile, profileId, skillset}) => {
 
   return (
     <div>
-      <input type="text" onKeyPress={e=>{if(e.key==='Enter')sendNewField()}} id={`input${skillset}`} placeholder={`add ${skillset}`} />
+      <input type="text" onKeyPress={e=>{if(e.key==='Enter')sendNewField()}} id={`input${skillset}`} placeholder={`Add ${skillset}`} />
       <button onClick={sendNewField}  className="remove-btn">+</button>
     </div>
   )

@@ -1,5 +1,31 @@
-.embeded-wrapper {
+.embedded-wrapper {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  margin: 4px;
+  border-radius: 5px;
+}
+
+iframe {
+  margin-bottom: -4px;
+}
+
+.soundHeader__logo {
+  width: 0;
+}
+
+@media screen and (min-width: 500px) {
+  iframe {
+    box-shadow: 10px 5px 20px -5px var(--space-cadet);
+  }
+}
+
+.add-embed {
+  margin-bottom: 12px;
+}
+
+.music-div {
+  /*box-shadow: 10px 5px 26px -5px var(--space-cadet);*/
 }
