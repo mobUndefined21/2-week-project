@@ -7,7 +7,7 @@ const Skillset = ({skillsetName, profile, appendProfile, profileId, setLoading})
 
   return (
     <div>
-      <h3>{skillsetName}:</h3>
+      <h3 className="skillset-title">{skillsetName} </h3>
       {profile.isOwner ?
       <AddField skillset={skillsetName}
       appendProfile={appendProfile}

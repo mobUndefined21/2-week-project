@@ -1,8 +1,21 @@
 .nav {
   display: flex;
   justify-content: start;
-  gap: 20px;
+  gap: 10px;
   text-decoration: none;
+  margin-left: 10px;
+}
+
+@media only screen and (min-width: 600px) {
+  .nav {
+    margin-left: 5%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .nav {
+    margin-left: 10%;
+  }
 }
 
 .nav > h2 {
@@ -10,7 +23,9 @@
 }
 
 .nav--inline {
+  border-bottom: var(--rhythm) 1px solid;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   position: fixed;
@@ -41,28 +56,21 @@
   color: var(--space-cadet);
 }
 
-.logo {
-  margin-left: 20px;
-
-  /* top: 0px;
-  left: 0px;
-  position: absolute;
-  padding: 6px;
-  margin: 0px;
-  color: var(--ivory);
-  margin: 0; */
-}
 .avatar--small {
   background-color: var(--ivory);
   width: 32px;
   height: 32px;
-  margin: 6px;
+  margin-top: 5px;
+  margin-right: 10px;
   border-radius: 50%;
   border: solid var(--ivory) 2px;
-  position: absolute;
-  top: 10px;
-  right: 90px;
 }
+
+.avatar--small:hover {
+  border-color: var(--rhythm);
+  transition: 1000ms;
+}
+
 .nav-links {
   display: flex;
   justify-content: start;
@@ -70,36 +78,43 @@
   font-size: 26px;
   margin: 0;
   padding-left: 0;
-  /* width: 60%;
-  position: absolute;
-  font-size: 26px;
-  align-items: center;*/
   list-style: none;
 }
 
 .nav-link {
-  font-weight: 100;
+  font-weight: 200;
   display: flex;
   align-items: center;
-  /* padding: 6px;
-  margin: 6px; */
 }
 
 .nav-link:hover{
   color: var(--rhythm);
 }
 
-.active {
-  /* font-weight: 200; */
-}
-
-.btn-login{  
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
 .btn-login-text{
   text-decoration: none;
   color: var(--ivory);
+  white-space: nowrap;
+}
+
+.nav-container {
+  margin-right: 10px;
+  align-items: center;
+  display: flex;
+}
+
+@media only screen and (min-width: 600px) {
+  .nav-container {
+    margin-right: 5%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .nav-container {
+    margin-right: 10%;
+  }
+}
+
+.fa-microphone-alt {
+  font-size: 1.2rem;
 }

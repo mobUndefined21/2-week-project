@@ -11,7 +11,7 @@ const postMessage = async (msg, conversationId) => {
   return false;
 }
 
-const Chat = ({conversationId, updateChat}) => {
+const Chat = ({conversationId, newMessages, updateChat}) => {
   const [conversation, setConversation] = useState({});
   const [participants, setParticipants] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -20,6 +20,7 @@ const Chat = ({conversationId, updateChat}) => {
   const participantsUrl = (participantId) =>`${window.location.protocol}//${window.location.hostname}:8080/api/profiles/${participantId}`;
   const ts = 0;
 
+  newMessages[conversationId] = false;
 
   useEffect(() => {
     updateChat((data) => {
@@ -28,6 +29,10 @@ const Chat = ({conversationId, updateChat}) => {
       axios.get(url)
       .then(({data}) => {
         setConversation(data);
+        window.scroll({
+          top: document.querySelector('.messages-container').offsetHeight,
+          behavior: 'smooth'
+        });
       })
     });
 
@@ -35,6 +40,13 @@ const Chat = ({conversationId, updateChat}) => {
       .then(({data}) => {
         setConversation(data);
       })
+    setTimeout(() => {
+      window.scroll({
+        top: document.querySelector('.messages-container').offsetHeight,
+        behavior: 'smooth'
+      });
+    } ,1000);
+
   }, []);
 
   useEffect(() => {
@@ -53,7 +65,8 @@ const Chat = ({conversationId, updateChat}) => {
     );
   }, [conversation.participants]);
   
-  
+
+
   const handleKeyPress = e => {
     if (e.key === 'Enter') {
       postMessage({body: e.target.value, profileId: currentProfileId }, conversationId);
@@ -64,20 +77,23 @@ const Chat = ({conversationId, updateChat}) => {
   if(isLoading) return (
     <p className="margin-top__83">Loading...</p>
   )
+
   return (
     <div className="margin-top-110">
-      <ul>
-        {conversation.messages.map(({body, profileId, ts}, index) => (
-          <Message
-            key={index}
-            body={body}
-            isLocal={currentProfileId===profileId}
-            profile={participants.find(({_id}) => _id === profileId)}
-            ts={ts}
-          />))
-        }
-      </ul>
-      <div>
+      <div className='messages-container'>
+        <ul>
+          {conversation.messages.map(({body, profileId, ts}, index) => (
+            <Message
+              key={index}
+              body={body}
+              isLocal={currentProfileId===profileId}
+              profile={participants.find(({_id}) => _id === profileId)}
+              ts={ts}
+            />))
+          }
+        </ul>
+      </div>
+      <div className="messages-input-container">
         <input 
         type="text"
         onKeyPress={handleKeyPress}

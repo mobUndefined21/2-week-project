@@ -6,13 +6,13 @@ const dateFormatter = (unixTime) => {
   return dateObject.toLocaleDateString("sv-SE", dateOptions);
 };
 
-const Message = ({body, profile, isClient, ts}) => {
+const Message = ({body, profile, isLocal, ts}) => {
   return (
-    <li className="message container--chat">
-    <img className="avatar--tiny right" src={`${profile.avatar}`} />
-      <div className="profile">{isClient ? 'me' : profile.name}</div>
-      <div className="text">{body}</div>
-      <div className="timestamp">{dateFormatter(ts).split(' ')[1]}</div>
+    <li className={isLocal ? "message container--chat me" : "message container--chat you"}>
+    <img className={`avatar--tiny right ${isLocal ? "me" : ""}`} src={`${profile.avatar}`} />
+      <div className={`profile ${isLocal ? "me" : ""}`}>{isLocal ? 'me' : profile.name}</div>
+      <div className={`text ${isLocal ? "me" : ""}`}>{body}</div>
+      <div className={`timestamp ${isLocal ? "me" : ""}`}>{dateFormatter(ts).split(' ')[1]}</div>
     </li>
 
     // <div className="container--chat darker">

@@ -6,7 +6,7 @@ const url = `${window.location.protocol}//${window.location.hostname}:8080/api/`
 
 const localProfileId = window.localStorage.getItem('profileId');
 
-const ConversationHeader = ({conversationId, localProfile}) => {
+const ConversationHeader = ({conversationId, localProfile, newMessage, newMessages}) => {
   const [info, setInfo] = useState({});
   const [profile, setProfile] = useState({});
   const [isLoading, setLoading] = useState(true); 
@@ -32,7 +32,7 @@ const ConversationHeader = ({conversationId, localProfile}) => {
   return (
     <div className="conversation-name-container">
       <Link className="conversation-name" to={`/conversations/${conversationId}`}>
-        {profile.name}
+        {profile.name} {newMessage && 'New message'}
       </Link>
     </div>
   )

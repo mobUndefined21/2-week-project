@@ -45,21 +45,24 @@ const Editable = ({ Tag, content, classname, field, profileId, appendProfile, ow
       </textarea>
       : 
       <input
-      type="text"
-      placeholder={field}
-      onKeyPress={e=>{if(e.key==='Enter')toggleEdit()}}
-      onChange={onChange}
-      value={value}
+        type="text"
+        placeholder={field}
+        onKeyPress={e=>{if(e.key==='Enter')toggleEdit()}}
+        onChange={onChange}
+        value={value}
       />
       )
       : printTag();
 
   return (
-    <div className="editable">
+    <div className="description-wrapper">
+      {field === 'description' && <h3 className="description-title">Description</h3>}
+      <div className="editable">
       {output}
       {editing
         ? <button className="remove-btn" onClick={toggleEdit}>+</button>
         : <button className="edit-btn" onClick={toggleEdit}><i className="far fa-edit"></i></button>}
+      </div>
     </div>
   ) 
 }

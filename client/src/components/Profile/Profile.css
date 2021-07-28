@@ -1,0 +1,20 @@
+
+.profile-title-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-btn-profile {
+  font-size: 1em;
+  padding: 3px;
+}
+
+.chat-btn-container{
+  padding-right: 11px;
+}
+
+@media only screen and (min-width: 601px) {
+  .chat-btn-profile {
+    font-size: 2em;
+  }
+}

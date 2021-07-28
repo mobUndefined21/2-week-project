@@ -12,7 +12,7 @@ router.post('/newUser', async (req, res, next) => {
       bcrypt.hash(password, salt, async (err, hash) => {
         const newUser = { firstName, lastName, password: hash, email };
         const savedUser = await db.users.createUser(newUser);
-        const newProfile = await db.profiles.createProfile({ name: `${firstName} ${lastName}`, description: `hello my name is ${firstName} ${lastName}`, user: savedUser });
+        const newProfile = await db.profiles.createProfile({ name: `${firstName} ${lastName}`, avatar:'https://images.squarespace-cdn.com/content/v1/54b7b93ce4b0a3e130d5d232/1519987020970-8IQ7F6Z61LLBCX85A65S/icon.png?format=1000w', description: `hello, my name is ${firstName} ${lastName}`, user: savedUser });
   
         res.status(201).json({profileId: newProfile._id }).end();
       })

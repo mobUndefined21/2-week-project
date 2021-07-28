@@ -68,7 +68,7 @@ const updateProfile = async (query, props) => {
 
 const newConversation = async (participants) => {
   try {
-    const userConversation = await conversations.findOne({'conversations.participants': { $all: participants } });
+    const userConversation = await conversations.findOne({participants: { $all: participants } });
     if (userConversation) return userConversation._id;
 
     const conversation = await conversations.create({ participants, created: Date.now() })

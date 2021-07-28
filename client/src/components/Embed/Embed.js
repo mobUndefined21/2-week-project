@@ -1,6 +1,7 @@
 import React from 'react';
 import players from './players';
 import axios from 'axios';
+import './Embed.css';
 
 const profileId = window.localStorage.getItem('profileId');
 
@@ -10,7 +11,7 @@ const Embed = ({isOwner, embedLink, player, setLoading}) => {
     setLoading(true);
   };
   return (
-    <div>
+    <div className="embeded-wrapper">
       <div
         className="music-div" 
         dangerouslySetInnerHTML={{__html: players[player.toLowerCase()](embedLink)}}>

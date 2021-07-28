@@ -1,6 +1,13 @@
+
 .profile-page {
   margin-top: 83px;
   transition: 250ms;
+  padding-bottom: 60px;
+}
+
+.description-title {
+  margin: 0;
+  margin-bottom: -15px;
 }
 
 .profile-wrap {
@@ -18,37 +25,94 @@
 }
 
 .profile-name-wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
   background-color: var(--space-cadet);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   text-align: left;
-  min-width: 70%;
+  width: 100%;
   height: 40%;
   margin-left: -3rem;
-  margin-right: -10px;
+  align-items: center;
 }
 
-@media only screen and (min-width: 700px) {
+/* @media only screen and (min-width: 670px) {
   .profile-name-wrap {
-    width: 80%;
+    width: 90%;
   }
+} */
+
+.profile-name-wrap .editable {
+  align-items: flex-start;
 }
 
 .profile-name{
   font-size: 1.5rem;
   margin-bottom: 6px;
-  text-align: center;
 }
 
-.profile-title{
+.embeds {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  gap: 10px;
+  box-shadow: 0 0 15px rgba(217, 219, 241,0.2);
+  background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
+}
+
+.margin-bottom-5 {
+  margin-bottom: 5px;
+}
+
+.profile-title {
   margin-top: 0;
-  margin-left: 50px;
+  margin-left: 60px;
   font-size: 1rem;
-  font-weight: 100;
+  font-weight: 200;
+}
+
+.profile-skills-instruments {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+
+.profile-skills, .profile-instruments {
+  border-radius: 15px;
+  width: 60%;
+  padding-right: 12px;
+  box-shadow: 0 0 15px rgba(217, 219, 241,0.2);
+  background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
+}
+
+@media only screen and (max-width: 601px) {
+  .profile-skills-instruments {
+    flex-wrap: wrap;
+  }
+
+  .profile-skills, .profile-instruments {
+    width: 95%;
+  }
+}
+.skillset-title {
+  text-transform: capitalize;
+  color: var(--ivory);
+  background-color: var(--space-cadet);
+  font-weight: 200;
+  padding: 6px;
+  margin-top: 0;
+  width: 100%;
+  border-radius: 15px 15px 0px  0px;
 }
 
 .profile-name-wrap h1 {
-  margin-left: 50px;
+  margin-left: 60px;
 }
 
 input {
@@ -56,3 +120,4 @@ input {
   border: 2px solid ivory;
   margin: 3px;
 }
+

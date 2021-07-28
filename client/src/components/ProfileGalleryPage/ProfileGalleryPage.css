@@ -6,6 +6,24 @@
   position: relative;
 }
 
+@media only screen and (min-width: 600px) {
+  .gallery {
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .gallery {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .gallery-title {
   margin-top: 83px;
 }
@@ -18,6 +36,10 @@ a {
   text-decoration: none;
 }
 
+.profile-name-wrap .editable {
+  justify-content: flex-start;
+} 
+
 .profile-details {
   display: flex;
   background-color: var(--ivory);
@@ -26,13 +48,21 @@ a {
   margin: 8px;
 }
 
+.profile-details-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .profile-details-title{
   color: var(--space-cadet);
+  margin: 0;
 }
 
 .profile-details-subtitle{
   font-weight: 100;
   color: var(--rhythm);
+  margin: 0;
 }
 
 .profile-details:hover{
@@ -62,13 +92,3 @@ a {
   border: solid var(--rhythm) 2px;
 }
 
-.profile-skills {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.flex-between {
-  display: flex;
-  justify-content: space-between;
-}

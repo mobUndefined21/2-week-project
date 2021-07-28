@@ -3,10 +3,18 @@ import { useState, useEffect } from "react";
 import axios from 'axios'
 import './Footer.css';
 
-const Footer = ({loggedIn, setLoggedIn}) => {
+const Footer = ({loggedIn, setLoggedIn, onNewMessage}) => {
   const [profile, setProfile] = useState({});
   const [isLoading, setLoading] = useState(true);
-  
+  const [newMessages, setNewMessages] = useState(false);
+
+
+  useEffect(() => {
+    onNewMessage['footer'] = () => {
+      if(!newMessages)
+      setNewMessages(true);
+    };
+  },[])
   useEffect(() => {
     if (!loggedIn) return setLoading(false);
     const url = `${window.location.protocol}//${window.location.hostname}:8080/api/profiles/${window.localStorage.getItem('profileId')}`;
@@ -26,7 +34,7 @@ return (
       <NavLink to='/browsemusicians' className="nav-link">
         <li><i className="fas fa-user-friends"></i></li>
       </NavLink>
-      {loggedIn && <Link to={`/conversations`}><i class="fas far fa-comment-alt"></i></Link>}
+      {loggedIn && <Link onClick={e=>{setNewMessages(false)}}to={`/conversations`}>{newMessages ? <i class="fas fa-comment-medical"></i> : <i class="fas far fa-comment-alt"></i>}</Link>}
     </ul>
   </nav>
 )

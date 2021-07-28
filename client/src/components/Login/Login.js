@@ -18,8 +18,8 @@ const Login = ({setLoggedIn}) => {
         window.localStorage.setItem('authToken', res.data.authToken);
         window.localStorage.setItem('profileId', res.data.profileId);
         axios.defaults.headers.common = {authorization: res.data.authToken};
-        history.push(`/profile/${res.data.profileId}`)
         setLoggedIn(true);
+        history.push(`/profile/${res.data.profileId}`)
       })
       .catch(err => console.log(err.message))
   }
@@ -39,7 +39,6 @@ const Login = ({setLoggedIn}) => {
         <input className="form-input" type="password" name="password" id="password" onChange={e => setPassword(e.target.value)}/>
         <input type="submit" value="Log In" className="login-button"/>
       </form>
-      <h1>Login Page</h1>
     </div>
   )
 }

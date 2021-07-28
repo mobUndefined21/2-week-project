@@ -70,7 +70,6 @@ const Signup = ({setTab}) => {
         />
         <input type="submit" value="Sign Up" className="signup-button"/>
       </form>
-      <h1>Signup Page</h1>
     </div>
   )
 }

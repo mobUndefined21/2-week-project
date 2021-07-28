@@ -8,19 +8,13 @@ import { io } from "socket.io-client";
 
 const profileId = window.localStorage.getItem('profileId');
 const socketUrl = `ws://${window.location.hostname}:8081`;
-const socket = io(socketUrl);
+const _socket = io(socketUrl);
 const url = `${window.location.protocol}//${window.location.hostname}:8080/api/messages/profile/${profileId}`;
 
-const Conversations = () => {
+const Conversations = ({socket, updateChat, newMessages}) => {
   const [isLoading, setLoading] = useState(true);
   const [conversations, setConversations] = useState([]);
   const { conversationId } = useParams();
-  const updateChat = (callback) => {
-    console.log('updateChat run');
-    socket.on('newMessage', data => {
-      callback(data);
-    });
-  };
 
   useEffect(() => {
     socket.emit('handshake', {profileId})
@@ -30,22 +24,33 @@ const Conversations = () => {
     });
   }, []);
 
+  const hasNewMessage = (conversationId) => {
+    console.log(newMessages, conversationId);
+    const key = Object.keys(newMessages).find(i => i === conversationId);
+    if (key) return newMessages[key];
+    return false;
+  };
+
   if (conversationId?.length) return <Chat 
-    updateChat={updateChat} conversationId={conversationId}/>;
+    updateChat={updateChat} newMessages={newMessages} conversationId={conversationId}/>;
 
   if(isLoading) return (
     <p className="margin-top__83">
       ...
     </p>
   );
-    console.log(conversations);
+
+  console.log(newMessages);
   return (
     <div className="conversations">
+      <h2 className="conversations-title">Conversations</h2>
     {
     conversations.map((conversation, key) => <ConversationHeader 
     key={key} 
     conversationId={conversation} 
-    localProfile={profileId} />)
+    localProfile={profileId}
+    newMessages={newMessages} 
+    newMessage={hasNewMessage(conversation)}/>)
     }
     </div>
   )

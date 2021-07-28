@@ -10,9 +10,12 @@
   background-color: var(--blue-bell);
   border-radius: 15px;
   text-decoration: none;
-  /* position: absolute;
-  bottom: 82px;
-  right: 10px; */
+}
+
+.btn-login-loginContainer:hover {
+  background-color: var(--space-cadet);
+  transition: 500ms;
+  cursor: pointer;
 }
 
 .nav-link-loginContainer {
@@ -42,15 +45,25 @@ p, a, label {
 }
 
 .login-button, .signup-button {
-  margin: 5rem 0;
+  margin-top: 2rem;
   font-size: 2rem;
   color: var(--ivory);
   border: solid 2px var(--ivory);
-  background-color: var(--blue-bell);
+  background-color: var(--space-cadet);
   border-radius: 15px;
   text-decoration: none;
 }
 
-.margin-top-61{
-  margin-top: 61px;
+.login-button:hover {
+  background-color: var(--blue-bell);
+  color: var(--space-cadet);
+  transition: 500ms;
+  cursor: pointer;
+}
+
+.signup-button:hover  {
+  background-color: var(--blue-bell);
+  color: var(--space-cadet);
+  transition: 500ms;
+  cursor: pointer;
 }
