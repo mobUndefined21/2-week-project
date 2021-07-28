@@ -14,7 +14,7 @@
   height: 128px;
   border-radius: 50%;
   border: solid var(--space-cadet) 4px;
-  z-index: 1;
+  z-index: 999;
 }
 
 .profile-name-wrap {
@@ -37,6 +37,7 @@
 .profile-name{
   font-size: 1.5rem;
   margin-bottom: 6px;
+  text-align: center;
 }
 
 .profile-title{
@@ -48,4 +49,10 @@
 
 .profile-name-wrap h1 {
   margin-left: 50px;
+}
+
+input {
+  border-radius: 15px;
+  border: 2px solid ivory;
+  margin: 3px;
 }

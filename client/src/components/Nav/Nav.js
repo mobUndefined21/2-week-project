@@ -24,7 +24,7 @@ function Nav({loggedIn, setLoggedIn}) {
       <nav className={`nav--inline ${window.scrollY > 80? 'background-dark': ''}`}>
         <Link to='/' exact className="nav-link nav">
           <h3 className="logo"><i className="fas fa-microphone-alt"></i></h3>
-          <h2>Strummr</h2>
+          <h2 className="nav-title">Strummr</h2>
         </Link>
         {isLoading ? '':
         loggedIn && 

@@ -7,5 +7,6 @@ const soundcloud = link => {
 
 const players = {
   spotify,
+  soundcloud,
 }
 export default players;

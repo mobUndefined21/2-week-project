@@ -9,7 +9,7 @@ const updateProfile = async (profileId, field, property) => {
   return await axios.patch(url, { [field]: property });
 };
 
-const Editable = ({ Tag, content, field, profileId, appendProfile, owner, textarea = false}) => {
+const Editable = ({ Tag, content, classname, field, profileId, appendProfile, owner, textarea = false}) => {
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(content);
   if(!editing && !value) setEditing(true);
@@ -26,6 +26,16 @@ const Editable = ({ Tag, content, field, profileId, appendProfile, owner, textar
     setValue(e.target.value);
   }
   
+  const printTag = () => {
+    switch(Tag) {
+      case 'img': {
+        return <Tag className={classname} src={content} />
+      }
+      default:
+        return <Tag className={classname}>{content}</Tag> 
+    }
+  }
+
   const output = editing
     ? (
       textarea 
@@ -42,7 +52,7 @@ const Editable = ({ Tag, content, field, profileId, appendProfile, owner, textar
       value={value}
       />
       )
-    : <Tag>{content}</Tag>
+      : printTag();
 
   return (
     <div className="editable">

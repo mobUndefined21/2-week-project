@@ -23,9 +23,7 @@ const Chat = ({conversationId, updateChat}) => {
 
   useEffect(() => {
     updateChat((data) => {
-      console.log('suxxess!')
       if (data.conversationId !== conversationId) return;
-      console.log(conversation)
 
       axios.get(url)
       .then(({data}) => {
@@ -44,20 +42,16 @@ const Chat = ({conversationId, updateChat}) => {
     conversation.participants?.forEach(profileId => {
       axios.get(participantsUrl(profileId))
       .then(({data}) => {
-        console.log(data);
-        profiles.push(data); 
+        profiles.push(data);
+        console.log(profiles);
         if (profiles.length === 2) {
-          setLoading(false)
           setParticipants(profiles);
+          setLoading(false)
         }
       });
     }
     );
   }, [conversation.participants]);
-  
-  useEffect(() => {
-    console.log(participants);
-  }, [participants])
   
   
   const handleKeyPress = e => {
@@ -78,17 +72,19 @@ const Chat = ({conversationId, updateChat}) => {
             key={index}
             body={body}
             isLocal={currentProfileId===profileId}
-            profile={participants.find(id => id === profileId)}
+            profile={participants.find(({_id}) => _id === profileId)}
             ts={ts}
           />))
         }
       </ul>
-      <input 
-      type="text"
-      onKeyPress={handleKeyPress}
-      className="input--field"
-      placeholder="..."
-      />
+      <div>
+        <input 
+        type="text"
+        onKeyPress={handleKeyPress}
+        className="input--field"
+        placeholder="..."
+        />
+      </div>
     </div>
   )
 }

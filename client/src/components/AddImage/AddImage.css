@@ -1,0 +1,13 @@
+#files {
+  display: none;
+}
+
+.avatar-input {
+  z-index: 1;
+}
+
+.btn-centered {
+  position: absolute;
+  top: 194px;
+  left: 73px;
+}

@@ -7,11 +7,10 @@ const dateFormatter = (unixTime) => {
 };
 
 const Message = ({body, profile, isClient, ts}) => {
-
   return (
     <li className="message container--chat">
-    <img className="avatar--tiny right" src="`${profile.avatar}`" />
-      <div className="profile">{isClient ? 'me' : profile}</div>
+    <img className="avatar--tiny right" src={`${profile.avatar}`} />
+      <div className="profile">{isClient ? 'me' : profile.name}</div>
       <div className="text">{body}</div>
       <div className="timestamp">{dateFormatter(ts).split(' ')[1]}</div>
     </li>

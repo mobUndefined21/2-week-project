@@ -10,10 +10,6 @@
 }
 
 @media only screen and (min-width: 800px) {
-  .footer {
-    justify-content:flex-end;
-  }
-
   .nav-links{
     gap: 20px;
   }

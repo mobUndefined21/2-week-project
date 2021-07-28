@@ -6,7 +6,7 @@ const AddField = ({appendProfile, profileId, skillset}) => {
   const url = `${window.location.protocol}//${window.location.hostname}:8080/api/profiles/${profileId}/${skillset}`;
   const sendNewField = () => {
     const name = document.querySelector(`#input${skillset}`).value;
-    axios.post(url, {name, skill: 4}).then(() => appendProfile({}));
+    axios.post(url, { name }).then(() => appendProfile({}));
   }
 
   return (

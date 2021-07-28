@@ -61,7 +61,8 @@ router.post('/:conversationId', async (req, res) => {
     if(!participants) return;
     
     const clients = req.io.clients.filter(({profileId}) => participants.find(r => r === profileId));
-    clients.forEach(({socket}) => socket.emit('newMessage', { conversationId: req.params.conversationId }))
+    clients.forEach(({socket}) => socket.emit('newMessage', { conversationId: req.params.conversationId }));
+
   } catch (err) {
     console.error(err);
     res.json({ message: err.message });

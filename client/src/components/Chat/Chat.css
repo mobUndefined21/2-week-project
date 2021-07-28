@@ -1,7 +1,39 @@
 /* Chat containers */
 
+.conversations {
+  margin-top: 150px;
+}
+
+.conversation-name-container {
+  justify-content: center;
+  display: flex;
+  margin: 8px auto;
+  width: 70%;
+  border-radius: 5px 25px 25px 5px;
+  transition: 250ms;
+  background-color: var(--ivory);
+}
+
+.conversation-name {
+  color: var(--space-cadet);
+}
+
+.conversation-name-container:hover{
+  transition: 250ms;
+  background-color: var(--rhythm);
+}
+
+.conversation-name:hover {
+  color: var(--ivory);
+}
+
 .margin-top-110{
   margin-top: 110px;
+  padding-bottom: 155px;
+}
+
+.margin-top-110 ul {
+  padding: 0;
 }
 
 .message {
@@ -11,6 +43,8 @@
 .text{
   font-size: 1.3rem;
   font-weight: 500;
+  width: 70%;
+  margin-left: 5rem;
 }
 
 .timestamp{
@@ -23,8 +57,8 @@
   border: 2px solid #dedede;
   background-image: linear-gradient(to top right, var(--rhythm), var(--blue-bell), var(--lavender-web));
   border-radius: 5px;
-  padding: 10px;
-  margin: 10px 0;
+  /* padding: 10px; */
+  margin: 10px auto;
   max-width: 60%;
   color: var(--space-cadet);
 }
@@ -33,9 +67,12 @@
   padding: 8px;
   border: 2px solid #dedede;
   border-radius: 5px;
-  margin: 16px;
+  margin: 16px auto;
   position: fixed;
+  top: 85%;
+  left: 50%;
   bottom: 44px;
+  transform: translate(-50%, -50%);
   width: 80%;
   min-height: 5rem;
   color: var(--space-cadet);

@@ -35,6 +35,12 @@
   color: var(--ivory);
 }
 
+.nav-title:hover{
+  transition: 1000ms;
+  -webkit-text-stroke: 1px var(--ivory);
+  color: var(--space-cadet);
+}
+
 .logo {
   margin-left: 20px;
 

@@ -5,7 +5,9 @@ import Editable from '../Editable/Editable';
 import AddField from '../AddField/AddField';
 import Skillset from '../Skillset/Skillset';
 import Link from 'react-router-dom';
-import Embed from '../Embed/Embed.js'
+import Embed from '../Embed/Embed.js';
+import AddEmbed from '../Embed/AddEmbed.js'
+import AddImage from '../AddImage/AddImage'
 import '../ProfilePage/ProfilePage.css';
 
 const msgUrl = `${window.location.protocol}//${window.location.hostname}:8080/api/messages/new`;
@@ -26,7 +28,7 @@ const Profile = ({profileId}) => {
   }
 
   const appendProfile = prop => {
-    setProfile({...profile, prop });
+    setProfile({ ...profile, prop });
     setLoading(true);
   }
 
@@ -52,39 +54,50 @@ const Profile = ({profileId}) => {
   if (!profile) {
     return <h2>Profile not found! </h2>
   }
+  console.log(profile.music);
   return(
     <div className="login-container">
       <div>
         <div className="profile-wrap">
-          <img className="avatar--profile" src={profile.avatar} alt="avatar"></img>
+          {
+            profile.isOwner
+            ? <AddImage profile={profile}/>
+            : <img className="avatar--profile" 
+            src={profile.avatar} 
+            alt="avatar"></img>
+          }
+          
           <div className="profile-name-wrap">
             <h1 className="profile-name">{profile.name}</h1>
-           
         {
           profile.isOwner 
           ? <Editable Tag="h2"
               field="title"
-              className="profile-title"
+              classname="profile-title"
               owner={profile.isOwner}
               content={profile.title}
               appendProfile={appendProfile}
               profileId={profileId} />
           : <h4 className="profile-title">{profile.title}</h4>
         }
-         
+        
           </div>
         </div>
         {!profile.isOwner && <i onClick={startConversation} class="fas far fa-comment-alt"></i>}
       </div>
+      <div className="embeds">
         {
-          profile.music?.map(link => {
+          profile.music?.map((link, key) => (
             <Embed
+            key={key}
             isOwner={profile.isOwner}
-            embedLink={link.url}
-            player={link.player} />
-          })
+            embedLink={link.link}
+            player={link.type} 
+            setLoading={setLoading}/>
+          ))
         }
-
+        {profile.isOwner && <AddEmbed profileId={localProfileId} setLoading={setLoading}/>}
+        </div>
         {
           profile.isOwner 
           ? <Editable Tag="p" field="description"

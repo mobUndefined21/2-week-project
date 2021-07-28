@@ -30,16 +30,24 @@ const Conversations = () => {
     });
   }, []);
 
-  if (conversationId?.length) return <Chat updateChat={updateChat} conversationId={conversationId}/>;
+  if (conversationId?.length) return <Chat 
+    updateChat={updateChat} conversationId={conversationId}/>;
 
   if(isLoading) return (
     <p className="margin-top__83">
-      Loading...
+      ...
     </p>
   );
     console.log(conversations);
   return (
-    conversations.map((conversation, key) => <ConversationHeader key={key} conversationId={conversation} localProfile={profileId} />)
+    <div className="conversations">
+    {
+    conversations.map((conversation, key) => <ConversationHeader 
+    key={key} 
+    conversationId={conversation} 
+    localProfile={profileId} />)
+    }
+    </div>
   )
 
 }

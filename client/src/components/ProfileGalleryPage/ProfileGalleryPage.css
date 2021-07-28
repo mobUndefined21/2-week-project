@@ -10,6 +10,10 @@
   margin-top: 83px;
 }
 
+section:last-child {
+  margin-bottom: 50px;
+}
+
 a {
   text-decoration: none;
 }
